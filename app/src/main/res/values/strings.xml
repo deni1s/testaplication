@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="navigation_drawer_open">drawer opened</string>
+    <string name="navigation_drawer_close">drawer closed</string>
+    <string name="title_of_main_menu">Приложение для новостей</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="alert_success_link_adding">Вы успешно добавили ссылку</string>
+    <string name="button_add">Добавить</string>
+    <string name="label_link_to_news">Ссылка на новость</string>
+    <string name="placeholder_enter_news_link">Введите ссылку</string>
+    <string name="title_news">Новости</string>
+    <string name="alert_wrong_url">Некорректный адрес ссылки</string>
+    <string name="placeholder_add_link_to_news">Добавьте ссылки на новости</string>
+    <string name="alert_link_already_saved">Ссылка была добавлена ранее</string>
+    <string name="empty_value">No data</string>
+</resources>
