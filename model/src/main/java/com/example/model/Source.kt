@@ -1,15 +1,13 @@
-package com.example.denis.myapplication.data
+package com.example.model
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.google.gson.annotations.SerializedName
 import io.realm.RealmObject
 import io.realm.annotations.RealmClass
 
 @RealmClass
 open class Source() : RealmObject(), Parcelable {
 
-    @SerializedName("id")
     var id : String? = ""
     var name : String = ""
 

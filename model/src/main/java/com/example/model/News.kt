@@ -1,8 +1,7 @@
-package com.example.denis.myapplication.data
+package com.example.model
 
 import android.os.Parcel
 import android.os.Parcelable
-import com.example.denis.myapplication.data.Source
 import io.realm.RealmModel
 import io.realm.annotations.Ignore
 import io.realm.annotations.PrimaryKey
@@ -75,6 +74,7 @@ open class News @JvmOverloads constructor(
     @param:Element(name = "guid")
     var guid: String? = null
 
+
 ) : RealmModel, Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
@@ -136,11 +136,5 @@ open class News @JvmOverloads constructor(
         override fun newArray(size: Int): Array<News?> {
             return arrayOfNulls(size)
         }
-
-        fun from(newsItem: News) =
-            News(
-                newsItem.description, newsItem.author, newsItem.title, newsItem.publishedAt, newsItem.content, newsItem.url, newsItem.image, newsItem.urlToImage,
-                newsItem.source, newsItem.artist, newsItem.isNewsWatched, newsItem.guid
-            )
     }
 }

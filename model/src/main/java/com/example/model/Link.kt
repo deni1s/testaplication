@@ -1,4 +1,4 @@
-package com.example.denis.myapplication.data
+package com.example.model
 
 import android.os.Parcel
 import android.os.Parcelable
