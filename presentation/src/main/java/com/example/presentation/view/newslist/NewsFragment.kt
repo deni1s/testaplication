@@ -6,13 +6,15 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.*
 import android.widget.TextView
+import com.example.data.realm.LinksDatabaseInterface
 import com.example.presentation.view.BaseFragment
 import com.example.presentation.view.newsdetails.NewsDetailFragment
 import com.example.presentation.view.settings.SettingsFragment
 import com.example.presentation.utils.recyclerview.EndlessScroll
 import com.example.presentation.R
-import com.example.data.realm.LinksRealmRepository
-import com.example.data.realm.NewsRealmRepository
+import com.example.data.realm.LinksDatabaseRepository
+import com.example.data.realm.NewsDatabaseInterface
+import com.example.data.realm.NewsDatabaseRepository
 import com.example.model.News
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
@@ -28,9 +30,8 @@ class NewsFragment : BaseFragment(), NewsListContract.View, NewsClickCallback {
     var shouldRefreshNews: Boolean = false
     lateinit var endlessScrollListener: EndlessScroll
 
-    private val newsRepository: NewsRealmRepository by inject()
-    private val linksRepository: LinksRealmRepository by inject()
-    override val presenter: NewsListContract.Presenter by inject { parametersOf(linksRepository.getLinkList()) }
+    private val linksDatabaseRepository: LinksDatabaseInterface by inject()
+    override val presenter: NewsListContract.Presenter by inject { parametersOf(linksDatabaseRepository.getLinkList()) }
 
 
     override fun showError(error: String) {
@@ -46,7 +47,6 @@ class NewsFragment : BaseFragment(), NewsListContract.View, NewsClickCallback {
             shouldRefreshNews = false
             swipeRefreshLayout!!.setRefreshing(false)
         }
-        markWatchedNews(newsList)
         newsAdapter!!.addNewsList(newsList)
 
         if (newsAdapter!!.itemCount == 0) {
@@ -113,14 +113,6 @@ class NewsFragment : BaseFragment(), NewsListContract.View, NewsClickCallback {
         presenter.reloadData()
     }
 
-    fun markWatchedNews(list: List<News>) {
-        list.forEach({
-            if (newsRepository.isNewsWasWatched(it)) {
-                it.isNewsWatched = true
-            }
-        })
-    }
-
     override fun hideProgressBar() {
         super.hideProgressBar()
         swipeRefreshLayout!!.setRefreshing(false)
@@ -135,8 +127,6 @@ class NewsFragment : BaseFragment(), NewsListContract.View, NewsClickCallback {
     }
 
     override fun onNewsClicked(news: News) {
-        news.isNewsWatched = true
-        newsRepository.addNewsItemRead(news)
         openFragment(NewsDetailFragment.newInstance(news), true)
     }
 

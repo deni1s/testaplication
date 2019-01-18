@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import com.example.presentation.view.BaseFragment
-import com.example.data.realm.LinksRealmRepository
+import com.example.data.realm.LinksDatabaseRepository
 import com.example.model.Link
 import com.example.presentation.view.newslist.NewsFragment
 import org.koin.android.ext.android.inject
@@ -18,7 +18,7 @@ class SettingsFragment : BaseFragment(), SettingsContract.View {
 
 
     override val presenter: SettingsContract.Presenter by inject()
-    private val linkRepository: LinksRealmRepository by inject()
+    private val linkDatabaseRepository: LinksDatabaseRepository by inject()
 
 
     override fun showError(error: String) {
@@ -30,7 +30,7 @@ class SettingsFragment : BaseFragment(), SettingsContract.View {
     }
 
     override fun linkIsValid(link: Link) {
-        linkRepository.addLinkToDataBase(link)
+        linkDatabaseRepository.addLinkToDataBase(link)
         showToast(getString(R.string.alert_success_link_adding))
         val fragment =
             activity!!.getSupportFragmentManager().findFragmentByTag(NewsFragment.FRAGMENT_TAG) as NewsFragment
@@ -61,7 +61,7 @@ class SettingsFragment : BaseFragment(), SettingsContract.View {
             override fun onClick(v: View?) {
 
                 val url = editTextLink.text.toString().trim()
-                if (!linkRepository.isLinkAlreadySaved(url)) {
+                if (!linkDatabaseRepository.isLinkAlreadySaved(url)) {
                     presenter.checkUrl(url)
                 } else {
                     linkWasAddedBefore()

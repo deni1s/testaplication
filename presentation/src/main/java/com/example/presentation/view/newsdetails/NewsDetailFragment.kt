@@ -12,35 +12,24 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.example.presentation.view.BaseFragment
-import com.example.presentation.R
 import com.example.model.News
+import com.example.presentation.R
+import com.example.presentation.view.BaseFragment
+import org.koin.android.ext.android.inject
 
 private const val NEWS_PARAM = "news"
 
-class NewsDetailFragment : BaseFragment() {
+class NewsDetailFragment : BaseFragment(), NewsDetailContract.View {
+
+    private lateinit var rootView: View
     private var news: News? = null
+    override val presenter: NewsDetailContract.Presenter by inject()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            news = it.getParcelable(NEWS_PARAM)
-        }
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View? {
-        val rooView = inflater.inflate(R.layout.fragment_news_detail, container, false)
-        prepareViews(rooView)
-        return rooView
-    }
-
-    private fun prepareViews(view: View) {
-        val imageViewPost = view.findViewById<View>(R.id.detail_news_image) as ImageView
-        val textViewPostTitle = view.findViewById<View>(R.id.detail_news_title) as TextView
-        val textViewPostCreationDate = view.findViewById<View>(R.id.detail_news_creation_date) as TextView
-        val textViewPostDescription = view.findViewById<View>(R.id.detail_news_description) as TextView
+    override fun showNewsDetail(newsDetail: News) {
+        val imageViewPost = rootView.findViewById<View>(R.id.detail_news_image) as ImageView
+        val textViewPostTitle = rootView.findViewById<View>(R.id.detail_news_title) as TextView
+        val textViewPostCreationDate = rootView.findViewById<View>(R.id.detail_news_creation_date) as TextView
+        val textViewPostDescription = rootView.findViewById<View>(R.id.detail_news_description) as TextView
         if (news != null) {
             if (!news!!.title.isNullOrEmpty()) {
                 textViewPostTitle.text = news!!.title
@@ -64,6 +53,27 @@ class NewsDetailFragment : BaseFragment() {
                 }
             }
         }
+    }
+
+    override fun showError(error: String) {
+        showToast(error)
+        popBackStack()
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            news = it.getParcelable(NEWS_PARAM)
+        }
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    ): View? {
+        rootView = inflater.inflate(R.layout.fragment_news_detail, container, false)
+        presenter.subscribe(this)
+        presenter.setNewsDetails(news!!)
+        return rootView
     }
 
     companion object {

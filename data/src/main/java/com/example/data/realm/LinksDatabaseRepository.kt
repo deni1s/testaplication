@@ -2,19 +2,18 @@ package com.example.data.realm
 
 import com.example.model.Link
 import io.realm.Realm
-import io.realm.RealmResults
 import io.realm.exceptions.RealmPrimaryKeyConstraintException
 
-class LinksRealmRepository(realm: Realm) : BaseRealmRepository(realm) {
+class LinksDatabaseRepository(realm: Realm) : BaseDataBaseRepository(realm), LinksDatabaseInterface {
 
     private val LINK_KEY = "link"
 
-    fun getLinkList(): RealmResults<Link> {
+    override fun getLinkList(): List<Link> {
         val results = realm.where(Link::class.java).findAll()
         return results
     }
 
-    fun addLinkToDataBase(link: Link) {
+    override fun addLinkToDataBase(link: Link) {
         realm.beginTransaction()
         try {
             realm.insertOrUpdate(link)
@@ -25,7 +24,7 @@ class LinksRealmRepository(realm: Realm) : BaseRealmRepository(realm) {
     }
 
 
-    fun isLinkAlreadySaved(link: String?): Boolean {
+    override fun isLinkAlreadySaved(link: String?): Boolean {
         val user = realm.where(Link::class.java).equalTo(LINK_KEY, link).findFirst()
         return user != null
     }

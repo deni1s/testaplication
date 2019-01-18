@@ -1,12 +1,13 @@
 package com.example.service
 
 import com.example.data.news.NewsRepository
-import com.example.data.realm.NewsRealmRepository
+import com.example.data.realm.NewsDatabaseInterface
+import com.example.data.realm.NewsDatabaseRepository
 import com.example.model.Link
 import com.example.model.News
 import org.koin.standalone.KoinComponent
 
-class NewsRepositoryService(val newsRepository: NewsRealmRepository, val newsApiRepository: NewsRepository) :
+class NewsRepositoryService(val newsDatabaseRepository: NewsDatabaseInterface, val newsApiRepository: NewsRepository) :
     KoinComponent {
 
     suspend fun loadNewsList(link: Link): Result<List<News>> {
@@ -25,7 +26,7 @@ class NewsRepositoryService(val newsRepository: NewsRealmRepository, val newsApi
 
     fun markWatchedNews(newsList: List<News>) {
         newsList.forEach({
-            if (newsRepository.isNewsWasWatched(it)) {
+            if (newsDatabaseRepository.isNewsWasWatched(it)) {
                 it.isNewsWatched = true
             }
         })

@@ -2,7 +2,7 @@ package com.example.data.realm
 
 import io.realm.Realm
 
-open class BaseRealmRepository(val realm: Realm) {
+open class BaseDataBaseRepository(val realm: Realm) {
 
    protected fun clearRealm() {
         realm.beginTransaction()
