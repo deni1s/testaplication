@@ -2,12 +2,13 @@ package com.example.presentation.view.settings
 
 import android.util.Patterns
 import com.example.data.news.NewsRepository
-import com.example.presentation.utils.CoroutineContextProvider
 import com.example.presentation.utils.mvp.BasePresenter
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class SettingsPresenter(val contextProvider: CoroutineContextProvider, val newsRepository: NewsRepository) :
+class SettingsPresenter(val coroutineScope: CoroutineScope, val newsRepository: NewsRepository) :
     BasePresenter<SettingsContract.View>,
     SettingsContract.Presenter {
 
@@ -15,7 +16,7 @@ class SettingsPresenter(val contextProvider: CoroutineContextProvider, val newsR
 
     override fun unSubscribe() {
         view = null
-        if(::job.isInitialized) {
+        if (::job.isInitialized) {
             job.cancel()
         }
     }
@@ -25,7 +26,7 @@ class SettingsPresenter(val contextProvider: CoroutineContextProvider, val newsR
     override fun checkUrl(urlToNews: String) {
         if (view != null) {
             if (isLinkValid(urlToNews)) {
-                job = contextProvider.uiScope.launch {
+                job = coroutineScope.launch(Dispatchers.Main) {
                     try {
                         val link = newsRepository.getCheckUrlObservable(urlToNews)
                         if (!link.isEmpty()) {

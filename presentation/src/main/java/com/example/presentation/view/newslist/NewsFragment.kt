@@ -16,8 +16,11 @@ import com.example.data.realm.LinksDatabaseRepository
 import com.example.data.realm.NewsDatabaseInterface
 import com.example.data.realm.NewsDatabaseRepository
 import com.example.model.News
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
+import kotlin.coroutines.coroutineContext
 
 
 class NewsFragment : BaseFragment(), NewsListContract.View, NewsClickCallback {
@@ -31,7 +34,7 @@ class NewsFragment : BaseFragment(), NewsListContract.View, NewsClickCallback {
     lateinit var endlessScrollListener: EndlessScroll
 
     private val linksDatabaseRepository: LinksDatabaseInterface by inject()
-    override val presenter: NewsListContract.Presenter by inject { parametersOf(linksDatabaseRepository.getLinkList()) }
+    override val presenter: NewsListContract.Presenter by inject { parametersOf(linksDatabaseRepository.getLinkList(), GlobalScope) }
 
 
     override fun showError(error: String) {

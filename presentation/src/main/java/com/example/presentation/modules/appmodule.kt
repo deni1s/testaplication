@@ -13,14 +13,14 @@ import com.example.presentation.view.newslist.NewsListContract
 import com.example.presentation.view.newslist.NewsListPresenter
 import com.example.service.NewsRepositoryService
 import com.example.service.serviceModule
+import kotlinx.coroutines.CoroutineScope
 
 import org.koin.dsl.module.module
 
 val viewModule = module {
-    single { CoroutineContextProvider() }
-    factory { (linkList: List<Link>) -> NewsListPresenter(get(), linkList, get()) as NewsListContract.Presenter }
+    factory { (linkList: List<Link>, coroutineScope : CoroutineScope) -> NewsListPresenter(coroutineScope, linkList, get()) as NewsListContract.Presenter }
     factory { NewsDetailPresenter(get()) as NewsDetailContract.Presenter }
-    factory { SettingsPresenter(get(), get()) as SettingsContract.Presenter }
+    factory { (coroutineScope : CoroutineScope) ->  SettingsPresenter(coroutineScope, get()) as SettingsContract.Presenter }
 }
 
 val module = listOf(

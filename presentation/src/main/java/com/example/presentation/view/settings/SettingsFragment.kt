@@ -13,11 +13,14 @@ import com.example.model.Link
 import com.example.presentation.view.newslist.NewsFragment
 import org.koin.android.ext.android.inject
 import com.example.presentation.R
+import kotlinx.coroutines.GlobalScope
+import org.koin.core.parameter.parametersOf
 
 class SettingsFragment : BaseFragment(), SettingsContract.View {
 
 
-    override val presenter: SettingsContract.Presenter by inject()
+    override val presenter: SettingsContract.Presenter by inject{ parametersOf(GlobalScope) }
+
     private val linkDatabaseRepository: LinksDatabaseRepository by inject()
 
 

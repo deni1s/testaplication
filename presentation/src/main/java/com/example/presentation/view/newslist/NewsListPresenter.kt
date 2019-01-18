@@ -1,15 +1,17 @@
 package com.example.presentation.view.newslist
 
-import com.example.presentation.utils.CoroutineContextProvider
-import com.example.presentation.utils.mvp.BasePresenter
+import android.content.Context
 import com.example.model.Link
+import com.example.presentation.utils.mvp.BasePresenter
 import com.example.service.NewsRepositoryService
 import com.example.service.Result
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
 class NewsListPresenter(
-    val contextProvider: CoroutineContextProvider,
+    val coroutineScope: CoroutineScope,
     val linksList: List<Link>,
     val newsRepository: NewsRepositoryService
 ) : BasePresenter<NewsListContract.View>, NewsListContract.Presenter {
@@ -42,7 +44,7 @@ class NewsListPresenter(
 
     private fun loadData(position: Int) {
         if (linksList.size > position) {
-            job = contextProvider.uiScope.launch {
+            job = coroutineScope.launch(Dispatchers.Main) {
                 isLoading = true
                 view!!.showProgressBar()
                 val newsResponse = newsRepository.loadNewsList(linksList[position])
