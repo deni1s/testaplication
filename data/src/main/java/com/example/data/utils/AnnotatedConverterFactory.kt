@@ -26,7 +26,7 @@ class AnnotatedConverterFactory(internal val mFactoryMap: Map<Class<*>, Converte
                 return factory.responseBodyConverter(type, annotations, retrofit)
             }
         }
-        //try to default to json in case no annotation on current method was found
+        //try to default to newsresponsejson in case no annotation on current method was found
         val jsonFactory = mFactoryMap[Json::class.java]
         return jsonFactory?.responseBodyConverter(type, annotations, retrofit)
     }

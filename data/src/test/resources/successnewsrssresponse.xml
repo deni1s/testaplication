@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"  >
+  <channel>
+    <title>Все публикации подряд</title>
+    <link>https://habr.com/ru/all/all/</link>
+    <description><![CDATA[Все публикации подряд на Хабре]]></description>
+    <language>ru</language>
+    <managingEditor>editor@habr.com</managingEditor>
+    <generator>habr.com</generator>
+    <pubDate>Sun, 20 Jan 2019 18:27:53 GMT</pubDate>
+    <lastBuildDate></lastBuildDate>
+    <image>
+      <link>https://habr.com/ru/</link>
+      <url>https://habr.com/images/logo.png</url>
+      <title>Хабр</title>
+    </image>
+
+    <item>
+      <title><![CDATA[Переход на Boost-1.65.1 и баги, которые всплыли]]></title>
+      <guid isPermaLink="true">https://habr.com/ru/post/436828/</guid>
+      <link>https://habr.com/ru/post/436828/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=436828</link>
+      <description><![CDATA[В прошлом году(уже почти целый год прошел) мы все–таки перешли на новую версию Boost-1.65.1, и под капотом вы найдете тройку багов boost-а, с которыми мы столкнулись. Еще важно упомянуть, что до этого у нас в ПО использовался boost -1.62.1, поскольку какие-то баги появились в boost ранее версии 1.65.1<br>
+<br>
+В нашем проекте есть специальная команда интеграции, основной задачей которой является миграция всего софта на новую версию библиотек, Visual Studio, новые версии компонентов низкого уровня (базовые, от которых зависят большинство других компонентов) и т.п. Также команда миграции ответственна за устранение всех проблем, которые при этом возникают, естественно при содействии мейнтейнеров компонентов, если это необходимо. Итак, баги, которые особенно запомнились мне.<br> <a href="https://habr.com/ru/post/436828/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=436828#habracut">Читать дальше →</a>]]></description>
+
+      <pubDate>Sun, 20 Jan 2019 18:12:34 GMT</pubDate>
+      <dc:creator>AnROm</dc:creator>
+      <category><![CDATA[C++]]></category><category><![CDATA[Программирование]]></category>
+      <category><![CDATA[boost]]></category><category><![CDATA[boost::filesystem]]></category><category><![CDATA[boost::numpy]]></category><category><![CDATA[boost::python]]></category><category><![CDATA[boost-1.65.1]]></category>
+    </item>
+
+
+
+
+
+
+
+
+
+
+
+    <item>
+      <title><![CDATA[[Перевод] Конференция DEFCON 19. Anonymous и мы. Часть 1]]></title>
+      <guid isPermaLink="true">https://habr.com/ru/post/436792/</guid>
+      <link>https://habr.com/ru/post/436792/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=436792</link>
+      <description><![CDATA[Вы видите на экране фразу «Кто сражается с монстрами», а я – модератор этой презентации Пол Робертс, редактор threatpost.com, новостного портала, посвященного компьютерной безопасности. У нас большая группа выступающих, которых я представлю через пару секунд, а пока что расскажу про основные правила нашей дискуссии. У нас также имеются слайды, которые относятся к тому, что будет рассказывать каждый участник дискуссии.<br>
+<br>
+<img src="https://habrastorage.org/webt/pa/5w/hd/pa5whdd9yepsedoczd0lr0rodew.jpeg"><br>
+<br>
+После выступления мы собираемся отвечать на вопросы, но у нас есть только час, так что попрошу вас относить записки с вопросами вон в ту дверь, там у нас будет комната вопросов и ответов Q&amp;A, и потом ваши вопросы передадут выступающим. <a href="https://habr.com/ru/post/436792/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=436792#habracut">Читать дальше →</a>]]></description>
+
+      <pubDate>Sun, 20 Jan 2019 17:10:16 GMT</pubDate>
+      <dc:creator>ua-hosting</dc:creator>
+      <category><![CDATA[Блог компании ua-hosting.company]]></category><category><![CDATA[IT-инфраструктура]]></category><category><![CDATA[Информационная безопасность]]></category><category><![CDATA[Конференции]]></category><category><![CDATA[Программирование]]></category>
+      <category>Anonymous</category>
+    </item>
+
+
+
+
+
+    <item>
+      <title><![CDATA[Новый указ президента США существенно граничит работу в стране китайских IT-компаний]]></title>
+      <guid isPermaLink="true">https://habr.com/ru/post/436816/</guid>
+      <link>https://habr.com/ru/post/436816/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=436816</link>
+      <description><![CDATA[<img src="https://habrastorage.org/getpro/habr/post_images/1fe/d17/f58/1fed17f58641b69aa8772893b6fa3969.jpg"><br>
+<br>
+Администрация президента США Дональда Трампа разработала указ, который способен значительно осложнить работу телекоммуникационных компаний Китая в США. Об этом <a href="https://www.vedomosti.ru/politics/news/2019/01/19/791872-ogranichit-deyatelnost-it-kompanii">сообщает</a> Bloomberg. По мнению представителей издания, ограничения призваны защищать интересы национальной безопасности страны. <br>
+<br>
+При этом в указе нет названий конкретных компаний, также там нет прямого запрета на продажу китайскими компаниями услуг на рынке США. Тем не менее, если положения указа будут реализованы, то полномочия министерства торговли США в отношении оценки продукции и деятельности иностранных компаний будут существенно расширены. <br> <a href="https://habr.com/ru/post/436816/#habracut">Читать дальше →</a>]]></description>
+
+      <pubDate>Sun, 20 Jan 2019 17:09:43 GMT</pubDate>
+      <dc:creator>marks</dc:creator>
+      <category><![CDATA[Законодательство в IT]]></category>
+      <category><![CDATA[сша]]></category><category><![CDATA[китай]]></category><category><![CDATA[инфраструктура]]></category><category><![CDATA[телекоммуникации]]></category>
+    </item>
+
+
+
+
+
+    <item>
+      <title><![CDATA[Оценка затрат на разработку через TDD]]></title>
+      <guid isPermaLink="true">https://habr.com/ru/post/436814/</guid>
+      <link>https://habr.com/ru/post/436814/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=436814</link>
+      <description><![CDATA[<p>Скромная дискуссия по мотивам моей вчерашней <a href="https://habr.com/ru/post/436736/">публикации</a> на тему прогнозирования времени на разработку, в очередной раз пробудила во мне ощущение некоей неправильности на тему использования чисто умозрительного подхода к разбиению истории на задачи. На мой взгляд, когда мы пишем задачи в списке, даже когда мы используем объектную или функциональную терминологию, мы не вполне представляем себе все модули с кодом, которые нам потребуется разработать или доработать.</p><br>
+<p>Тогда мне пришла в голову идея, после разбиения пользовательской истории на задачи, попробовать набросать черновики модульных тестов, для классов или методов, которые я упоминаю в задачах. Мне даже не нужно выдумывать пользовательскую историю, я могу взять одну из моей текущей работы. Например:</p> <a href="https://habr.com/ru/post/436814/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=436814#habracut">Читать дальше →</a>]]></description>
+
+      <pubDate>Sun, 20 Jan 2019 16:49:55 GMT</pubDate>
+      <dc:creator>SergeyEgorov</dc:creator>
+      <category><![CDATA[Управление разработкой]]></category>
+      <category><![CDATA[управление разработкой]]></category><category><![CDATA[оценка времени]]></category><category><![CDATA[простые принципы]]></category><category><![CDATA[tdd]]></category>
+    </item>
+
+
+
+
+
+
+
+    <item>
+      <title><![CDATA[Как взять сетевую инфраструктуру под свой контроль. Часть третья. Сетевая безопасность. Продолжение]]></title>
+      <guid isPermaLink="true">https://habr.com/ru/post/436230/</guid>
+      <link>https://habr.com/ru/post/436230/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=436230</link>
+      <description><![CDATA[<i>Это вторая часть главы «Сетевая безопасность» (которая в свою очередь является третьей частью цикла статей «Как взять сетевую инфраструктуру под свой контроль»). В <a href="https://habr.com/ru/post/435138/">первой части</a> этой главы мы рассмотрели некоторые аспекты сетевой безопасности сегмента «Data Center». Эта глава будет посвящена «Internet Access» сегменту. </i><br>
+<br>
+<img src="https://habrastorage.org/webt/90/cg/fg/90cgfgwjckdeac9trcmr6gifhcy.png" alt="image"><br>
+<br>
+<h1>Internet access</h1><br>
+Тема безопасности несомненно является одной из наиболее сложных тем мира сетей передачи данных. Как и в предыдущих случаях, не претендуя на глубину и полноту, я рассмотрю здесь достаточно простые, но, на мой взгляд важные вопросы, ответы на которые, надеюсь, помогут поднять уровень защищенности вашей сети.<br>
+<br>
+При аудите этого сегмента обратите внимание на следующие аспекты:<br>
+<br>
+<ul>
+<li>дизайн</li>
+<li>настройки BGP </li>
+<li>DOS/DDOS защита</li>
+<li>фильтрация трафика на фаерволе</li>
+</ul> <a href="https://habr.com/ru/post/436230/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=436230#habracut">Читать дальше →</a>]]></description>
+
+      <pubDate>Sun, 20 Jan 2019 16:33:17 GMT</pubDate>
+      <dc:creator>nihole</dc:creator>
+      <category><![CDATA[DevOps]]></category><category><![CDATA[IT-инфраструктура]]></category><category><![CDATA[Информационная безопасность]]></category><category><![CDATA[Сетевые технологии]]></category>
+      <category><![CDATA[управление отделом сети]]></category><category><![CDATA[сетевая инфраструктура]]></category><category><![CDATA[сетевая безопасность]]></category><category><![CDATA[процессы в it]]></category><category><![CDATA[архитектура сетей]]></category>
+    </item>
+
+
+
+
+
+
+
+    <item>
+      <title><![CDATA[256 строчек голого C++: пишем трассировщик лучей с нуля за несколько часов]]></title>
+      <guid isPermaLink="true">https://habr.com/ru/post/436790/</guid>
+      <link>https://habr.com/ru/post/436790/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=436790</link>
+      <description><![CDATA[Публикую очередную главу из моего <a href="https://github.com/ssloy/tinyrenderer">курса лекций по компьютерной графике</a> (вот <a href="https://habr.com/ru/post/249139/">тут можно читать</a> оригинал на русском, хотя английская версия новее). На сей раз тема разговора — отрисовка сцен при помощи трассировки лучей. Как обычно, я стараюсь избегать сторонних библиотек, так как это заставляет студентов заглянуть под капот.<br>
+<br>
+Подобных проектов в интернете уже море, но практически все они показывают законченные программы, в которых разобраться крайне непросто. Вот, например, очень известная <a href="https://www.taylorpetrick.com/blog/post/business-rt">программа рендеринга, влезающая на визитку</a>. Очень впечатляющий результат, однако разобраться в этом коде очень непросто. Моей целью является не показать как я могу, а детально рассказать, как подобное воспроизвести. Более того, мне кажется, что конкретно эта лекция полезна даже не столь как учебный материал по комьпютерной графике, но скорее как пособие по программированию. Я последовательно покажу, как прийти к конечному результату, начиная с самого нуля: как разложить сложную задачу на элементарно решаемые этапы. <br>
+<br>
+<i>Внимание: просто рассматривать мой код, равно как и просто читать эту статью с чашкой чая в руке, смысла не имеет. Эта статья рассчитана на то, что вы возьмётесь за клавиатуру и напишете ваш собственный движок. Он наверняка будет лучше моего. Ну или просто смените язык программирования!</i><br>
+<br>
+Итак, сегодня я покажу, как отрисовывать подобные картинки:<br>
+<br>
+<img src="https://habrastorage.org/getpro/habr/post_images/064/50f/65d/06450f65da7c0503838bc008dcaba6a3.jpg"><br> <a href="https://habr.com/ru/post/436790/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=436790#habracut">Читать дальше →</a>]]></description>
+
+      <pubDate>Sun, 20 Jan 2019 16:25:35 GMT</pubDate>
+      <dc:creator>haqreu</dc:creator>
+      <category><![CDATA[C++]]></category><category><![CDATA[Математика]]></category><category><![CDATA[Программирование]]></category><category><![CDATA[Разработка игр]]></category>
+      <category><![CDATA[трассировка лучей]]></category><category><![CDATA[компьютерная графика]]></category><category><![CDATA[математика на пальцах]]></category><category><![CDATA[геометрия для пятого класса]]></category>
+    </item>
+
+
+
+
+
+
+
+    <item>
+      <title><![CDATA[В США собираются модернизировать морально устаревшие АЭС, продлив им жизнь]]></title>
+      <guid isPermaLink="true">https://habr.com/ru/post/436812/</guid>
+      <link>https://habr.com/ru/post/436812/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=436812</link>
+      <description><![CDATA[<img src="https://habrastorage.org/getpro/habr/post_images/ccf/ff3/97a/ccfff397a5ae438bf58ce71671e1a769.jpg"><br>
+<br>
+В такой большой стране, как США <a href="https://www.eia.gov/tools/faqs/faq.php?id=427&amp;t=3">около 20%</a> всего производимого электричества генерируется на АЭС. Атомная энергетика дает около 50% так называемого «низкоуглеродного электричества». Но сейчас у Штатов с этим проблемы — дело в том, что подавляющее большинство АЭС были построены в 70-х и 80-х годах прошлого века. <br>
+<br>
+Единственный реактор установили в 90-х, так что он может считаться «молодым». Все остальные морально и физически устарели. Правда, моральное устаревание здесь превалирует, поскольку американцы стараются заменять устаревшее оборудование. <br> <a href="https://habr.com/ru/post/436812/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=436812#habracut">Читать дальше →</a>]]></description>
+
+      <pubDate>Sun, 20 Jan 2019 15:54:09 GMT</pubDate>
+      <dc:creator>Ekaterina_T</dc:creator>
+      <category><![CDATA[Блог компании Madrobots]]></category><category><![CDATA[Энергия и элементы питания]]></category>
+      <category><![CDATA[АЭС]]></category><category><![CDATA[США]]></category><category><![CDATA[энергетика]]></category><category><![CDATA[энергия]]></category>
+    </item>
+
+
+
+
+
+
+
+    <item>
+      <title><![CDATA[Естественный износ головок жесткого диска. Обнаружение и оценка]]></title>
+      <guid isPermaLink="true">https://habr.com/ru/post/436806/</guid>
+      <link>https://habr.com/ru/post/436806/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=436806</link>
+      <description><![CDATA[<h2>Введение</h2><br>
+Выход из строя головок жесткого диска – довольно частая проблема, с которой встречаются специалисты по восстановлению данных. Причин выхода головок из строя несколько, наиболее часто встречаются:<br>
+<br>
+<ol>
+<li>Повреждения головок при аварийном завершении работы диска (залипание на поверхности, неправильный заход на парковку и т.п.).</li>
+<li>Повреждения головок при физическом воздействии на диск (падение диска, удар по диску, сильные вибрации во время работы и т.п.).</li>
+<li>Повреждения головок при электрическом шоке (сгорел блок питания, скачок напряжения в сети электропитания, переполюсовка при подключении питания (не спрашивайте меня как, разъем каким-то образом умудряются другой стороной забить) на накопитель и т.д.).</li>
+<li>Заводской брак.</li>
+<li>Естественный износ.</li>
+</ol> <a href="https://habr.com/ru/post/436806/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=436806#habracut">Читать дальше →</a>]]></description>
+
+      <pubDate>Sun, 20 Jan 2019 15:29:09 GMT</pubDate>
+      <dc:creator>dragonsbane</dc:creator>
+      <category><![CDATA[Восстановление данных]]></category><category><![CDATA[Накопители]]></category>
+      <category><![CDATA[жесткий диск]]></category><category><![CDATA[восстановление данных]]></category><category><![CDATA[восстановление информации]]></category><category><![CDATA[микроскопия]]></category><category><![CDATA[hard disk drive]]></category><category><![CDATA[data recovery]]></category>
+    </item>
+
+
+
+
+
+
+
+    <item>
+      <title><![CDATA[Есть мнение: IPv6 провалился — кто и почему так считает]]></title>
+      <guid isPermaLink="true">https://habr.com/ru/post/436720/</guid>
+      <link>https://habr.com/ru/post/436720/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=436720</link>
+      <description><![CDATA[IPv6 появился ещё в середине 90-х и должен заменить собой IPv4. Спустя почти 30 лет IPv4 никуда не делся, а на новую версию IP-протокола перешла лишь пятая часть пользователей интернета. Для некоторых экспертов такое положение вещей стало поводом усомниться в перспективах IPv6. Чем обосновано их мнение, и кто с ним не согласен, — рассказываем далее.<br>
+<br>
+<a href="https://habr.com/ru/company/vasexperts/blog/436720/"><img src="https://habrastorage.org/webt/27/d_/c8/27d_c88xo44fzhzm0qpwhtjqzwm.jpeg"></a> <a href="https://habr.com/ru/post/436720/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=436720#habracut">Читать дальше →</a>]]></description>
+
+      <pubDate>Sun, 20 Jan 2019 14:46:15 GMT</pubDate>
+      <dc:creator>VASExperts</dc:creator>
+      <category><![CDATA[Блог компании VAS Experts]]></category><category><![CDATA[Разработка систем связи]]></category>
+      <category><![CDATA[vas experts]]></category><category><![CDATA[IPv4]]></category><category><![CDATA[IPv6]]></category><category><![CDATA[it-стандарты]]></category>
+    </item>
+
+
+
+
+
+
+
+    <item>
+      <title><![CDATA[Запускаем свой нейросетевой детектор на Raspberry Pi с помощью Neural Compute Stick и OpenVINO]]></title>
+      <guid isPermaLink="true">https://habr.com/ru/post/436744/</guid>
+      <link>https://habr.com/ru/post/436744/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=436744</link>
+      <description><![CDATA[С распространением и развитием нейронный сетей все чаще возникает потребность их использования на встроенных и маломощных устройствах, роботах и дронах. Устройство Neural Compute Stick в связке с фреймворком OpenVINO от компании Intel позволяет решить эту задачу, беря тяжелые вычисления нейросетей на себя. Благодаря этому можно без особых усилий запустить нейросетевой классификатор или детектор на маломощном устройстве вроде Raspberry Pi практически в реальном времени, при этом не сильно повышая энергопотребление. В данной публикации я расскажу, как использовать фреймворк OpenVINO (на C++) и Neural Compute Stick, чтобы запустить простую систему обнаружения лиц на Raspberry Pi.<br>
+<br>
+Как обычно, весь код доступен на <a href="https://github.com/BeloborodovDS/NCS-face">GitHub</a>.<br>
+<br>
+<img src="https://habrastorage.org/webt/qu/b_/tj/qub_tj1u6ztw9irfy9ivtaaidcc.jpeg"><br> <a href="https://habr.com/ru/post/436744/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=436744#habracut">Читать дальше →</a>]]></description>
+
+      <pubDate>Sun, 20 Jan 2019 14:34:50 GMT</pubDate>
+      <dc:creator>BeloborodovDS</dc:creator>
+      <category><![CDATA[C++]]></category><category><![CDATA[Машинное обучение]]></category><category><![CDATA[Работа с видео]]></category><category><![CDATA[Разработка на Raspberry Pi]]></category><category><![CDATA[Разработка робототехники]]></category>
+      <category><![CDATA[neural compute stick]]></category><category><![CDATA[paspberry pi]]></category><category><![CDATA[openvino toolkit]]></category><category><![CDATA[neural networks]]></category><category><![CDATA[face detection]]></category><category><![CDATA[нейронные сети]]></category>
+    </item>
+
+
+
+
+
+
+
+    <item>
+      <title><![CDATA[Коммуникационный виджет от 3CX для вашего сайта Wordpress]]></title>
+      <guid isPermaLink="true">https://habr.com/ru/post/436802/</guid>
+      <link>https://habr.com/ru/post/436802/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=436802</link>
+      <description><![CDATA[Представляем новый коммуникационный виджет для вашего сайта Wordpress от создателей АТС 3CX!<br>
+<br>
+При входе на сайт, у посетителя появляется небольшой виджет (коммуникационная панель), через который клиент может общаться с сотрудниками вашей компании. Новый плагин <a href="https://wordpress.org/plugins/3cx-clicktotalk/">3CX Live Chat and Talk</a> работает с <a href="https://www.3cx.ru/blog/pbx-instance-manager-alpha-2/">3CX v16</a> и выше. Вызовы из плагина направляются в АТС через WebRTC (Web Real-Time Communication) шлюз, интегрированный в АТС, и совершенно бесплатны. <a href="https://habr.com/ru/post/436802/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=436802#habracut">Читать дальше →</a>]]></description>
+
+      <pubDate>Sun, 20 Jan 2019 14:11:39 GMT</pubDate>
+      <dc:creator>snezhko</dc:creator>
+      <category><![CDATA[Блог компании 3CX Ltd.]]></category><category><![CDATA[IT-инфраструктура]]></category><category><![CDATA[WordPress]]></category><category><![CDATA[Разработка систем связи]]></category><category><![CDATA[Системное администрирование]]></category>
+      <category><![CDATA[3cx]]></category><category><![CDATA[wordpress]]></category><category><![CDATA[виджет]]></category><category><![CDATA[коммуникационная панель]]></category><category><![CDATA[сайт]]></category><category><![CDATA[3CX Live Chat and Talk]]></category><category><![CDATA[v16]]></category>
+    </item>
+
+
+
+
+
+
+
+    <item>
+      <title><![CDATA[Профессиональная деформация админа]]></title>
+      <guid isPermaLink="true">https://habr.com/ru/post/436798/</guid>
+      <link>https://habr.com/ru/post/436798/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=436798</link>
+      <description><![CDATA[У меня выработался критический взгляд со стороны на эту нужную и важную профессию, которая имеет спектр от простого «эникейщика» до грозного админа, лочащего эккаунты нерадивым сотрудникам, и к которому униженно идут сплошной вереницей просители.<br>
+<br>
+<div style="text-align:center;"><img src="https://habrastorage.org/webt/4s/ts/xg/4stsxgd-ejotxlmgyysi2edoqb4.jpeg" width="550"></div> <a href="https://habr.com/ru/post/436798/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=436798#habracut">Читать дальше →</a>]]></description>
+
+      <pubDate>Sun, 20 Jan 2019 14:01:06 GMT</pubDate>
+      <dc:creator>Tzimie</dc:creator>
+      <category><![CDATA[Биографии гиков]]></category><category><![CDATA[Интервью]]></category><category><![CDATA[Карьера в IT-индустрии]]></category><category><![CDATA[Офисы IT-компаний]]></category><category><![CDATA[Серверное администрирование]]></category>
+      <category><![CDATA[administration]]></category><category><![CDATA[career]]></category><category><![CDATA[карьера в it-индустрии]]></category><category><![CDATA[карьера]]></category><category><![CDATA[админ]]></category><category><![CDATA[админы]]></category><category><![CDATA[администратор сети]]></category>
+    </item>
+
+
+
+
+
+
+
+
+
+    <item>
+      <title><![CDATA[«Энергомаш» опровергает наличие конструктивного дефекта в двигателях «Ангары»]]></title>
+      <guid isPermaLink="true">https://habr.com/ru/post/436796/</guid>
+      <link>https://habr.com/ru/post/436796/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=436796</link>
+      <description><![CDATA[<img src="https://habrastorage.org/getpro/habr/post_images/f7b/b55/2dc/f7bb552dca78b7945c6f49a71dbd02a5.jpg"><br>
+<br>
+Сегодня стало известно о том, что научно-производственное объединение (НПО) «Энергомаш» опровергло публикации СМИ о дефекте в двигателях ракеты «Ангара» РД-191. Представители предприятия <a href="http://engine.space/press/pressnews/2648/">заявили</a>, что сведения, появившиеся в печати, недостоверны.<br>
+<br>
+Информация о том, что в двигателях «Ангары» имеется конструктивный дефект, впервые появилась в сообщении «РИА Новости». Издание со ссылкой на доклад специалистов сообщило, что конструкционные особенности двигателя могут привести к разрушению ракеты на старте. <br> <a href="https://habr.com/ru/post/436796/#habracut">Читать дальше →</a>]]></description>
+
+      <pubDate>Sun, 20 Jan 2019 13:54:32 GMT</pubDate>
+      <dc:creator>marks</dc:creator>
+      <category><![CDATA[Космонавтика]]></category><category><![CDATA[Транспорт будущего]]></category>
+      <category><![CDATA[двигатели]]></category><category><![CDATA[энергомаш]]></category><category><![CDATA[ракеты]]></category>
+    </item>
+
+
+
+
+
+    <item>
+      <title><![CDATA[25 лет «Аэрону»: ощущения и впечатления от обновлённой версии Aeron Remastered]]></title>
+      <guid isPermaLink="true">https://habr.com/ru/post/435962/</guid>
+      <link>https://habr.com/ru/post/435962/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=435962</link>
+      <description><![CDATA[«Аэрон» это кресло не только с ценником, но и с историей. Выпущенный в 1994 году «<a href="http://nymag.com/news/intelligencer/21364/">трон доткомов</a>» пережил большинство своих мыльных королевств, вместо гранитной плиты получив <a href="https://www.moma.org/collection/works/3734">прописку в коллекции</a> нью-йоркского Музея современного искусства MoMA, — и стал самым продаваемым офисным креслом Америки. <br>
+<br>
+<img src="https://habrastorage.org/webt/lo/6-/6j/lo6-6j7urlrzqq91xh2r-2jxavi.png"><br>
+<br>
+«<a href="http://habr.com/post/362913">Лучше, чем Aeron</a>» назывался обзор кресла Herman Miller Mirra 2, вышедший в 2014 году — обновлённой «Мирре» тогда был год, «Аэрону» — 20. Короче, обновление «Аэрона» в 2016 году, 22 лет отроду, было нерядовым событием. <a href="https://media1.tenor.com/images/82a25dfc237e8e6de720e6e7419c9220/tenor.gif">Теперь уже «Аэрону-2» 2 года, а «Мирре-2» — 5 лет</a>. Впрочем, о матче-реванше речи не идёт: ценник Herman Miller Aeron Remastered на родине <a href="http://store.hermanmiller.com/office/office-chairs?srule=price-high-to-low&amp;sz=45&amp;start=0&amp;lang=en_US">на 20% выше</a> всё ещё недешёвой Mirra 2 намекает на разные рыночные ниши моделей — впрочем, знакомство с «Миррой», которая, судя по всему, в самом зените своей рыночной карьеры — пригодится для контекста.<br> <a href="https://habr.com/ru/post/435962/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=435962#habracut">Читать дальше →</a>]]></description>
+
+      <pubDate>Sun, 20 Jan 2019 13:31:04 GMT</pubDate>
+      <dc:creator>andorro</dc:creator>
+      <category><![CDATA[Я пиарюсь]]></category>
+      <category><![CDATA[Herman Miller]]></category><category><![CDATA[Aeron Remastered]]></category><category><![CDATA[Aeron 2]]></category><category><![CDATA[Mirra 2]]></category>
+    </item>
+
+
+
+
+
+
+
+    <item>
+      <title><![CDATA[Развертывание Office 2019 в корпоративной среде (для ИТ-специалистов)]]></title>
+      <guid isPermaLink="true">https://habr.com/ru/post/436788/</guid>
+      <link>https://habr.com/ru/post/436788/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=436788</link>
+      <description><![CDATA[Для настройки и развертывания корпоративных версий Office 2019 в вашей организации, включая Project и Visio (и других программ), используйте средство развертывания Office Deployment Tool (ODT).<br> <a href="https://habr.com/ru/post/436788/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=436788#habracut">Читать дальше →</a>]]></description>
+
+      <pubDate>Sun, 20 Jan 2019 12:23:50 GMT</pubDate>
+      <dc:creator>Aickis</dc:creator>
+      <category><![CDATA[IT-инфраструктура]]></category>
+      <category><![CDATA[office 365]]></category><category><![CDATA[office 2019]]></category>
+    </item>
+
+
+
+
+
+
+
+    <item>
+      <title><![CDATA[Как мы мониторили Black Hat Europe 2018]]></title>
+      <guid isPermaLink="true">https://habr.com/ru/post/436786/</guid>
+      <link>https://habr.com/ru/post/436786/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=436786</link>
+      <description><![CDATA[Полгода назад я уже <a href="https://habr.com/ru/company/cisco/blog/416901/">писал</a> на Хабре заметку, где делился нашим опытом мониторинга различных конференций по ИТ и ИБ, в которых Cisco приглашают для обеспечения работы SOC и NOC (Black Hat, Mobile World Congress, RSAC и т.п.). Сегодня я бы хотел поделиться опытом участия в работе центра мониторинга сети, который обслуживал последний европейский Black Hat, в котором мы помогаем работе NOC уже второй год. Вместе с RSA, Palo Alto, Gigamon и Rukus мы обеспечивали защиту инфраструктуру конференции и тренингов. На плечи Cisco легли задачи мониторинга и расследования инцидентов DNS (с помощью <a href="https://umbrella.cisco.com">Cisco Umbrella</a> и <a href="https://learn-umbrella.cisco.com/threat-intelligence/investigate-from-opendns">Cisco Umbrella Investigate</a>), а также автоматизированный анализ вредоносного кода и Threat Intelligence с помощью <a href="https://www.cisco.com/c/en/us/products/security/threat-grid/index.html">Cisco Threat Grid</a>.<br>
+<br>
+<img src="https://habrastorage.org/webt/rn/l4/b3/rnl4b3417fi4ftvg5uftvb9amjy.jpeg" alt="Представление результатов работы Black Hat NOC"> <a href="https://habr.com/ru/post/436786/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=436786#habracut">Читать дальше →</a>]]></description>
+
+      <pubDate>Sun, 20 Jan 2019 11:49:12 GMT</pubDate>
+      <dc:creator>alukatsky</dc:creator>
+      <category><![CDATA[Блог компании Cisco]]></category><category><![CDATA[Информационная безопасность]]></category><category><![CDATA[Конференции]]></category>
+      <category><![CDATA[cisco]]></category><category><![CDATA[umbrella]]></category><category><![CDATA[opendns]]></category><category><![CDATA[threatgrid]]></category><category><![CDATA[blackhat]]></category><category><![CDATA[мониторинг сети]]></category><category><![CDATA[soc]]></category><category><![CDATA[расследование инцидентов иб]]></category>
+    </item>
+
+
+
+
+
+
+
+
+
+    <item>
+      <title><![CDATA[[Из песочницы] Thimble (Mozilla) переезжает на Glitch]]></title>
+      <guid isPermaLink="true">https://habr.com/ru/post/436784/</guid>
+      <link>https://habr.com/ru/post/436784/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=436784</link>
+      <description><![CDATA[<p>С середины декабря 2018 года на <a href="https://thimble.mozilla.org/ru">сайте проекта Thimble от Mozilla</a> появилось объявление о переезде на платформу проекта <a href="https://glitch.com/">Glitch</a>. Переезд должен полностью состояться до 16 декабря 2019 года.</p><br/>
+<p>Обе платформы уже обсуждались на Хабре. Статьи о Thimble – <a href="https://habr.com/ru/post/146046/">статья 1</a>, <a href="https://habr.com/ru/post/159999/">статья 2</a>. <a href="https://habr.com/ru/company/everydaytools/blog/324180/">Статья о Glitch</a>.</p> <a href="https://habr.com/ru/post/436784/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=436784#habracut">Читать дальше &rarr;</a>]]></description>
+
+      <pubDate>Sun, 20 Jan 2019 11:38:10 GMT</pubDate>
+      <dc:creator>max-optic</dc:creator>
+      <category><![CDATA[CSS]]></category><category><![CDATA[HTML]]></category><category><![CDATA[JavaScript]]></category>
+      <category>thimble</category><category>glitch</category><category>html</category><category>css</category><category>javascript</category>
+    </item>
+
+
+
+
+
+
+
+    <item>
+      <title><![CDATA[[Из песочницы] Подводные камни разработки Google Play Instant]]></title>
+      <guid isPermaLink="true">https://habr.com/ru/post/436780/</guid>
+      <link>https://habr.com/ru/post/436780/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=436780</link>
+      <description><![CDATA[<img src="https://habrastorage.org/webt/r4/z7/fg/r4z7fgs6v1btcn8gyo2t23xro_c.jpeg"><br>
+<br>
+Привет, Хабр! Меня зовут Камо Сперцян, я занимаюсь Android-разработкой в PROFI.RU. Недавно я написал приложение с мгновенным запуском для наших клиентов. Если вы ещё не знакомы с технологией, приглашаю вас сначала посетить <a href="https://developer.android.com/topic/google-play-instant/">Android Developers</a>.<br>
+<br>
+С презентации Instant Apps (Google Play Instant) на Google I/O 2016 прошло больше двух лет. В сети множество статей о том, как создавать приложения с мгновенным запуском. Судя по ним, ничего сложного в этом нет. Но на деле это не совсем так. Я постараюсь описать основные трудности, через которые мне пришлось пройти от создания пустого проекта до публикации Instant App в Google Play. Надеюсь, статья окажется полезной разработчикам, которым этот путь ещё предстоит.<br> <a href="https://habr.com/ru/post/436780/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=436780#habracut">Читать дальше →</a>]]></description>
+
+      <pubDate>Sun, 20 Jan 2019 11:27:13 GMT</pubDate>
+      <dc:creator>sc_pro_ion</dc:creator>
+      <category><![CDATA[Разработка мобильных приложений]]></category><category><![CDATA[Разработка под Android]]></category>
+      <category>Google Play Instant</category><category>Instant Apps</category><category>Android</category>
+    </item>
+
+
+
+
+
+
+
+    <item>
+      <title><![CDATA[[Из песочницы] Из зоны комфорта в топ-разработчики]]></title>
+      <guid isPermaLink="true">https://habr.com/ru/post/436776/</guid>
+      <link>https://habr.com/ru/post/436776/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=436776</link>
+      <description><![CDATA[Трудно найти в себе мотивацию, когда интереса к тому, что ты делаешь, нет. Поэтому прежде чем потратить впустую кучу времени и посвятить всего себя какому-то ремеслу, стоит как следует присмотреться к вещам, которые будут Вам интересны в будущем. Ведь без интереса к профессии ничего хорошего явно не получится. В данном посте, я хотел бы описать моменты, которые мне помогли проделать путь к своей мечте, а именно: «Стать программистом». <br> <a href="https://habr.com/ru/post/436776/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=436776#habracut">Читать дальше →</a>]]></description>
+
+      <pubDate>Sun, 20 Jan 2019 10:38:05 GMT</pubDate>
+      <dc:creator>MorozovVadim</dc:creator>
+      <category><![CDATA[GTD]]></category><category><![CDATA[Карьера в IT-индустрии]]></category><category><![CDATA[Лайфхаки для гиков]]></category><category><![CDATA[Учебный процесс в IT]]></category>
+      <category>мотивация</category><category>разработка</category><category>разработка программного обеспечения</category><category>производительность</category><category>развитие</category><category>стремление</category>
+    </item>
+
+
+
+
+
+    <item>
+      <title><![CDATA[Заметки фитохимика. Закат эпохи хабра-банана]]></title>
+      <guid isPermaLink="true">https://habr.com/ru/post/434406/</guid>
+      <link>https://habr.com/ru/post/434406/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=434406</link>
+      <description><![CDATA[<p><i>Anfangen ist leicht, Beharren eine Kunst (Начинать — легко, продолжать — искусство)</i><br>
+<i><b>Немецкая пословица</b></i></p><br>
+<p>Думаю, тема банана уважаемым хабра-читателям уже порядком поднадоела. Пора бы с одной стороны закончить наконец с этим бананом, да написать про какой-нибудь чеснок. Но что поделать, ситуация как в том анекдоте про "мыши кололись, плакали, но все равно жрали кактус", ведь с бананом мы еще не закончили. Поэтому, чтобы наконец замкнуть круг и узнать про связь банана и тайского бокса, про адреналин из банана, и про то, почему закусывать нужно бананом, а не лимоном <del>и про дельфинчиков из банана</del> — следуем под кат! </p><br>
+<p></p><div style="text-align:center;"><img src="https://habrastorage.org/webt/ns/ux/zm/nsuxzmhdgceqj0fbk-uofjzjdo8.jpeg"></div> <a href="https://habr.com/ru/post/434406/?utm_source=habrahabr&amp;utm_medium=rss&amp;utm_campaign=434406#habracut">Читать дальше →</a>]]></description>
+
+      <pubDate>Sun, 20 Jan 2019 10:37:40 GMT</pubDate>
+      <dc:creator>steanlab</dc:creator>
+      <category><![CDATA[Биотехнологии]]></category><category><![CDATA[Здоровье гика]]></category><category><![CDATA[Лайфхаки для гиков]]></category><category><![CDATA[Научно-популярное]]></category><category><![CDATA[Химия]]></category>
+      <category><![CDATA[заметки фитохимика]]></category><category><![CDATA[банан]]></category><category><![CDATA[фитохимия]]></category><category><![CDATA[происхождение банана]]></category><category><![CDATA[фрукт Евы]]></category><category><![CDATA[Musa acuminata]]></category><category><![CDATA[Musa balbisiana]]></category><category><![CDATA[Musa paradisiaca]]></category><category><![CDATA[гибрид]]></category><category><![CDATA[Заводная]]></category><category><![CDATA[Пружинщица]]></category><category><![CDATA[Windup Girl]]></category><category><![CDATA[Паоло Бачигалупи]]></category><category><![CDATA[Най Кхам Том]]></category><category><![CDATA[Nai Khanom Thom]]></category><category><![CDATA[муай тай]]></category><category><![CDATA[боксерская ночь]]></category><category><![CDATA[Денис Гончаренок]]></category><category><![CDATA[Нанг Тани]]></category><category><![CDATA[клуай тани]]></category><category><![CDATA[серотонин]]></category><category><![CDATA[дофамин]]></category><category><![CDATA[адреналин]]></category><category><![CDATA[норадреналин]]></category><category><![CDATA[EpiPen]]></category><category><![CDATA[AnaPen]]></category><category><![CDATA[антигистаминный препарат]]></category><category><![CDATA[анафилактический шок]]></category><category><![CDATA[гематоэнцефалический барьер]]></category><category><![CDATA[Blood-brain barrier]]></category><category><![CDATA[триптофан]]></category><category><![CDATA[тирозин]]></category><category><![CDATA[L-DOPA]]></category><category><![CDATA[леводопа]]></category><category><![CDATA[тирамин]]></category><category><![CDATA[полифенолоксидаза]]></category><category><![CDATA[PPO]]></category><category><![CDATA[Б. Болотов]]></category><category><![CDATA[фрукты в Unicode]]></category><category><![CDATA[FOSHU]]></category><category><![CDATA[функциональные продукты]]></category><category><![CDATA[фитостерины]]></category><category><![CDATA[фитостеролы]]></category><category><![CDATA[холестерин]]></category><category><![CDATA[Фосфолипид]]></category><category><![CDATA[водку закусить бананом]]></category><category><![CDATA[фосфатидилхолин]]></category><category><![CDATA[фосфатидилэтаноламин]]></category><category><![CDATA[антацид]]></category><category><![CDATA[противоязвенный препарат]]></category><category><![CDATA[дельфин из банана]]></category>
+    </item>
+
+
+
+
+
+
+
+
+
+
+
+  </channel>
+</rss>
