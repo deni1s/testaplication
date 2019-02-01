@@ -40,4 +40,8 @@ open class Link() : RealmModel, Parcelable {
             return arrayOfNulls(size)
         }
     }
+
+    override fun equals(other: Any?): Boolean {
+        return other != null && other is Link && other.link.equals(link)
+    }
 }

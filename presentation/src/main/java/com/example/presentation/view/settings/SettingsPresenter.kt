@@ -28,7 +28,7 @@ class SettingsPresenter(val coroutineScope: CoroutineScope, val newsRepository: 
             if (isLinkValid(urlToNews)) {
                 job = coroutineScope.launch(Dispatchers.Main) {
                     try {
-                        val link = newsRepository.getCheckUrlObservable(urlToNews)
+                        val link = newsRepository.checkLinkFromUrl(urlToNews)
                         if (!link.isEmpty()) {
                             view!!.linkIsValid(link)
                         } else {

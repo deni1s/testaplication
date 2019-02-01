@@ -1,6 +1,5 @@
 package com.example.presentation.view.newslist
 
-import android.content.Context
 import com.example.model.Link
 import com.example.presentation.utils.mvp.BasePresenter
 import com.example.service.NewsRepositoryService
@@ -44,7 +43,7 @@ class NewsListPresenter(
 
     private fun loadData(position: Int) {
         if (linksList.size > position) {
-            job = coroutineScope.launch(Dispatchers.Main) {
+            job = coroutineScope.launch(Dispatchers.Default) {
                 isLoading = true
                 view!!.showProgressBar()
                 val newsResponse = newsRepository.loadNewsList(linksList[position])

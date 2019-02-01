@@ -22,7 +22,7 @@ class NewsRepository(val jsonNewsApiInterface: NewsApiInterface, val rssNewsApiI
         }
     }
 
-    suspend fun getCheckUrlObservable(linkString: String): Link {
+    suspend fun checkLinkFromUrl(linkString: String): Link {
         val jsonNewsResponse = jsonNewsApiInterface.loadJsonNews(linkString)
         val rssNewsResponse = rssNewsApiInterface.loadRssNews(linkString)
         val link = Link()
