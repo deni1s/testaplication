@@ -40,7 +40,7 @@ open class Link() : RealmModel, Parcelable {
 
         val JSON_TYPE = 0
         val XML_TYPE = 1
-        val NOT_VALID_TYPE = 1
+        val NOT_VALID_TYPE = -1
         override fun createFromParcel(parcel: Parcel): Link {
             return Link(parcel)
         }
