@@ -12,9 +12,8 @@ import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
 import org.mockito.Mockito
-import org.mockito.MockitoAnnotations
 import org.mockito.Mockito.`when`
-
+import org.mockito.MockitoAnnotations
 
 
 class NewsListPresenterTest {
@@ -79,8 +78,8 @@ class NewsListPresenterTest {
     private fun getLink(): Link {
         val link = Link()
         link.link =
-                "https://newsapi.org/v2/everything?q=bitcoin&from=2019-01-31&sortBy=publishedAt&apiKey=2778ba9d0314458596009ce5650f906f"
-        link.isJson = true
+                "https://newsapi.org/v2/everything?q=bitcoin&from=2019-02-05&sortBy=publishedAt&apiKey=2778ba9d0314458596009ce5650f906f"
+        link.type = Link.JSON_TYPE
         return link
     }
 

@@ -11,11 +11,16 @@ open class Link() : RealmModel, Parcelable {
 
     @PrimaryKey
     var link :String = ""
-    var isJson :Boolean= true
+    var type :Int= NOT_VALID_TYPE
 
     constructor(parcel: Parcel) : this() {
         link = parcel.readString()
-        isJson = parcel.readByte() != 0.toByte()
+        type = parcel.readInt()
+    }
+
+    constructor(url : String, type : Int) : this() {
+        this.link = url
+        this.type = type
     }
 
     fun isEmpty() : Boolean {
@@ -24,7 +29,7 @@ open class Link() : RealmModel, Parcelable {
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(link)
-        parcel.writeByte(if (isJson) 1 else 0)
+        parcel.writeInt(type)
     }
 
     override fun describeContents(): Int {
@@ -32,6 +37,10 @@ open class Link() : RealmModel, Parcelable {
     }
 
     companion object CREATOR : Parcelable.Creator<Link> {
+
+        val JSON_TYPE = 0
+        val XML_TYPE = 1
+        val NOT_VALID_TYPE = 1
         override fun createFromParcel(parcel: Parcel): Link {
             return Link(parcel)
         }

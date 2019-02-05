@@ -20,7 +20,7 @@ class NewsRepositoryTest {
 
     @Test //runBlockingSilent
     fun testForSuccess() = runBlocking<Unit> {
-        Mockito.verify(newsRepository).checkLinkFromUrl(
+        Mockito.verify(newsRepository).getLinkTypeOrReturnInvalid(
             "https://newsapi.org/v2/everything?q=bitcoin&from=2019-02-01&sortBy=publishedAt&apiKey=2778ba9d0314458596009ce5650f906f"
         )
     }

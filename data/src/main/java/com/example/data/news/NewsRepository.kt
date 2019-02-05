@@ -7,7 +7,7 @@ import kotlinx.coroutines.Deferred
 class NewsRepository(val jsonNewsApiInterface: NewsApiInterface, val rssNewsApiInterface: NewsApiInterface) {
 
     suspend fun loadNewsList(link: Link): NewsResponse {
-        if (link.isJson) {
+        if (link.type == Link.JSON_TYPE) {
             return jsonNewsApiInterface.loadJsonNews(link.link).await()
         } else {
             return rssNewsApiInterface.loadRssNews(link.link).await()
@@ -22,17 +22,15 @@ class NewsRepository(val jsonNewsApiInterface: NewsApiInterface, val rssNewsApiI
         }
     }
 
-    suspend fun checkLinkFromUrl(linkString: String): Link {
+    suspend fun getLinkTypeOrReturnInvalid(linkString: String): Int {
         val jsonNewsResponse = jsonNewsApiInterface.loadJsonNews(linkString)
         val rssNewsResponse = rssNewsApiInterface.loadRssNews(linkString)
-        val link = Link()
         if (isResponseSuccessfull(jsonNewsResponse)) {
-            link.link = linkString
-            link.isJson = true
+            return Link.JSON_TYPE
         } else if (isResponseSuccessfull(rssNewsResponse)) {
-            link.link = linkString
-            link.isJson = false
+            return Link.XML_TYPE
+        } else {
+            return Link.NOT_VALID_TYPE
         }
-        return link
     }
 }

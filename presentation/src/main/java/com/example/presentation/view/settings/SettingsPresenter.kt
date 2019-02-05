@@ -2,6 +2,7 @@ package com.example.presentation.view.settings
 
 import android.util.Patterns
 import com.example.data.news.NewsRepository
+import com.example.model.Link
 import com.example.presentation.utils.mvp.BasePresenter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -28,9 +29,9 @@ class SettingsPresenter(val coroutineScope: CoroutineScope, val newsRepository: 
             if (isLinkValid(urlToNews)) {
                 job = coroutineScope.launch(Dispatchers.Main) {
                     try {
-                        val link = newsRepository.checkLinkFromUrl(urlToNews)
-                        if (!link.isEmpty()) {
-                            view!!.linkIsValid(link)
+                        val linkType = newsRepository.getLinkTypeOrReturnInvalid(urlToNews)
+                        if (linkType != Link.NOT_VALID_TYPE) {
+                            view!!.linkIsValid(Link(urlToNews, linkType))
                         } else {
                             view!!.linkNotValid()
                         }
