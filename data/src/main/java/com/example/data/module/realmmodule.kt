@@ -10,7 +10,7 @@ import org.koin.dsl.module.module
 val realmModule = module {
 
     single { getRealmInstance() }
-    single{ LinksDatabaseRepository(get()) as LinksDatabaseInterface }
+    single { LinksDatabaseRepository(get()) as LinksDatabaseInterface }
     single { NewsDatabaseRepository(get()) as NewsDatabaseInterface }
 }
 

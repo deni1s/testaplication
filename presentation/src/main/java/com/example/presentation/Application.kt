@@ -11,8 +11,8 @@ class Application : MultiDexApplication() {
     override fun onCreate() {
         super.onCreate()
         Realm.init(this)
-        realmMigration()
         startKoin(this, module)
+        realmMigration()
     }
 
     private fun realmMigration() {

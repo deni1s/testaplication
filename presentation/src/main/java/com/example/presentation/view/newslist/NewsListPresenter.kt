@@ -43,9 +43,9 @@ class NewsListPresenter(
 
     private fun loadData(position: Int) {
         if (linksList.size > position) {
-            job = coroutineScope.launch(Dispatchers.Default) {
-                isLoading = true
-                view!!.showProgressBar()
+            isLoading = true
+            view!!.showProgressBar()
+            job = coroutineScope.launch(Dispatchers.Main) {
                 val newsResponse = newsRepository.loadNewsList(linksList[position])
                 isLoading = false
                 if (newsResponse is Result.Success) {

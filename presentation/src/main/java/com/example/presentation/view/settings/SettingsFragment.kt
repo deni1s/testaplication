@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import com.example.data.realm.LinksDatabaseInterface
 import com.example.presentation.view.BaseFragment
 import com.example.data.realm.LinksDatabaseRepository
 import com.example.model.Link
@@ -21,7 +22,7 @@ class SettingsFragment : BaseFragment(), SettingsContract.View {
 
     override val presenter: SettingsContract.Presenter by inject{ parametersOf(GlobalScope) }
 
-    private val linkDatabaseRepository: LinksDatabaseRepository by inject()
+    private val linkDatabaseRepository: LinksDatabaseInterface by inject()
 
 
     override fun showError(error: String) {
