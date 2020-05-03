@@ -1,15 +1,15 @@
 package com.example.presentation.view.settings
 
 import android.util.Patterns
-import com.example.data.news.NewsRepository
-import com.example.model.Link
+import com.example.entity.Result
+import com.example.entity.settings.SettingsModel
 import com.example.presentation.utils.mvp.BasePresenter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class SettingsPresenter(val coroutineScope: CoroutineScope, val newsRepository: NewsRepository) :
+class SettingsPresenter(val coroutineScope: CoroutineScope, val settingsModel: SettingsModel) :
     BasePresenter<SettingsContract.View>,
     SettingsContract.Presenter {
 
@@ -24,19 +24,15 @@ class SettingsPresenter(val coroutineScope: CoroutineScope, val newsRepository: 
 
     override var view: SettingsContract.View? = null
 
-    override fun checkUrl(urlToNews: String) {
+    override fun saveUrl(urlToNews: String) {
         if (view != null) {
-            if (isLinkValid(urlToNews)) {
+            if (urlToNews.isLinkValid()) {
                 job = coroutineScope.launch(Dispatchers.Main) {
-                    try {
-                        val linkType = newsRepository.getLinkTypeOrReturnInvalid(urlToNews)
-                        if (linkType != Link.NOT_VALID_TYPE) {
-                            view!!.linkIsValid(Link(urlToNews, linkType))
-                        } else {
-                            view!!.linkNotValid()
-                        }
-                    } catch (e: Exception) {
-                        view!!.linkNotValid()
+                    val result = settingsModel.saveLink(linkUrl = urlToNews)
+                    if (result is Result.Success) {
+                        view!!.linkSaved()
+                    } else if (result is Result.Error) {
+                        view!!.linkNotSupported()
                     }
                 }
 
@@ -45,8 +41,8 @@ class SettingsPresenter(val coroutineScope: CoroutineScope, val newsRepository: 
             }
         }
     }
+}
 
-    fun isLinkValid(link: String): Boolean {
-        return !link.isEmpty() && Patterns.WEB_URL.matcher(link).matches();
-    }
+private fun String.isLinkValid(): Boolean {
+    return isNotEmpty() && Patterns.WEB_URL.matcher(this).matches();
 }

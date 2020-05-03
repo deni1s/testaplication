@@ -1,11 +1,11 @@
 package com.example.presentation
 
-import com.example.model.Link
-import com.example.model.News
+import com.example.entity.Link
+import com.example.entity.News
 import com.example.presentation.view.newslist.NewsListContract
 import com.example.presentation.view.newslist.NewsListPresenter
-import com.example.service.NewsRepositoryService
-import com.example.service.Result
+import com.example.entity.news.NewsModelImpl
+import com.example.entity.Result
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
@@ -23,7 +23,7 @@ class NewsListPresenterTest {
     private lateinit var link: Link
 
     @Mock
-    private lateinit var fetchFeed: NewsRepositoryService
+    private lateinit var fetchFeed: NewsModelImpl
 
     private lateinit var presenterImpl: NewsListPresenter
 

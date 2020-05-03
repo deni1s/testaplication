@@ -1,20 +1,31 @@
 package com.example.presentation.view.newsdetails
 
-import com.example.data.realm.NewsDatabaseInterface
-import com.example.model.News
+import com.example.entity.news.NewsModel
+import com.example.presentation.entity.NewsUM
+import com.example.presentation.mappers.toDomainModel
 import com.example.presentation.utils.mvp.BasePresenter
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
 
-class NewsDetailPresenter(val newsRepository: NewsDatabaseInterface) :
+class NewsDetailPresenter(
+    val coroutineScope: CoroutineScope,
+    val newsModel: NewsModel
+) :
     BasePresenter<NewsDetailContract.View>, NewsDetailContract.Presenter {
     override var view: NewsDetailContract.View? = null
+    private lateinit var job: Job
 
-
-    override fun setNewsDetails(newsDetail: News) {
-        newsRepository.addNewsItemRead(newsDetail)
-        view!!.showNewsDetail(newsDetail)
+    override fun setNewsDetails(newsDetail: NewsUM) {
+        job = coroutineScope.launch(Dispatchers.Main) {
+            newsModel.addNewsItemRead(newsDetail.toDomainModel())
+            view!!.showNewsDetail(newsDetail)
+        }
     }
 
     override fun unSubscribe() {
         view = null
+        job.cancel()
     }
 }

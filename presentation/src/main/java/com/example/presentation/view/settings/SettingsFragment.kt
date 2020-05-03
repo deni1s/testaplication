@@ -7,10 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import com.example.data.realm.LinksDatabaseInterface
 import com.example.presentation.view.BaseFragment
-import com.example.data.realm.LinksDatabaseRepository
-import com.example.model.Link
+import com.example.entity.Link
 import com.example.presentation.view.newslist.NewsFragment
 import org.koin.android.ext.android.inject
 import com.example.presentation.R
@@ -19,25 +17,20 @@ import org.koin.core.parameter.parametersOf
 
 class SettingsFragment : BaseFragment(), SettingsContract.View {
 
-
     override val presenter: SettingsContract.Presenter by inject{ parametersOf(GlobalScope) }
-
-    private val linkDatabaseRepository: LinksDatabaseInterface by inject()
-
 
     override fun showError(error: String) {
         showToast(error)
     }
 
-    fun linkWasAddedBefore() {
+    override fun linkWasAddedBefore() {
         showToast(context!!.getString(R.string.alert_link_already_saved))
     }
 
-    override fun linkIsValid(link: Link) {
-        linkDatabaseRepository.addLinkToDataBase(link)
+    override fun linkSaved() {
         showToast(getString(R.string.alert_success_link_adding))
         val fragment =
-            activity!!.getSupportFragmentManager().findFragmentByTag(NewsFragment.FRAGMENT_TAG) as NewsFragment
+            activity!!.supportFragmentManager.findFragmentByTag(NewsFragment.FRAGMENT_TAG) as NewsFragment
         fragment.refreshData()
         popBackStack()
     }
@@ -46,6 +39,9 @@ class SettingsFragment : BaseFragment(), SettingsContract.View {
         showToast(context!!.getString(R.string.alert_wrong_url))
     }
 
+    override fun linkNotSupported() {
+        showToast(context!!.getString(R.string.link_not_supported))
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_settings, container, false)
@@ -65,11 +61,7 @@ class SettingsFragment : BaseFragment(), SettingsContract.View {
             override fun onClick(v: View?) {
 
                 val url = editTextLink.text.toString().trim()
-                if (!linkDatabaseRepository.isLinkAlreadySaved(url)) {
-                    presenter.checkUrl(url)
-                } else {
-                    linkWasAddedBefore()
-                }
+                presenter.saveUrl(url)
             }
         })
     }

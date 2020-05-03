@@ -1,8 +1,7 @@
 package com.example.presentation.view.newslist
 
-import com.example.model.News
-
+import com.example.presentation.entity.NewsUM
 
 interface NewsClickCallback {
-    fun onNewsClicked(news : News)
+    fun onNewsClicked(news : NewsUM)
 }

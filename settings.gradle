@@ -1,1 +1,8 @@
-include ':model', ':data', ':presentation', ':service'
+include ':app',
+        ':domain-entity',
+        ':network',
+        ':model',
+        ':storage',
+        ':presentation',
+        ':repository',
+        ':repositories-mappers'

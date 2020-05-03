@@ -1,9 +1,9 @@
 package com.example.presentation.view.newslist
 
-import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import com.example.presentation.R
 
 class NewsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

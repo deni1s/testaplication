@@ -1,6 +1,5 @@
 package com.example.presentation.view.newsdetails
 
-
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -12,32 +11,39 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
-import com.example.model.News
 import com.example.presentation.R
+import com.example.presentation.entity.NewsUM
 import com.example.presentation.view.BaseFragment
+import kotlinx.coroutines.GlobalScope
 import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
 
 private const val NEWS_PARAM = "news"
 
 class NewsDetailFragment : BaseFragment(), NewsDetailContract.View {
 
     private lateinit var rootView: View
-    private var news: News? = null
-    override val presenter: NewsDetailContract.Presenter by inject()
+    private var news: NewsUM? = null
+    override val presenter: NewsDetailContract.Presenter by inject {
+        parametersOf(GlobalScope)
+    }
 
-    override fun showNewsDetail(newsDetail: News) {
+    override fun showNewsDetail(newsDetail: NewsUM) {
         val imageViewPost = rootView.findViewById<View>(R.id.detail_news_image) as ImageView
         val textViewPostTitle = rootView.findViewById<View>(R.id.detail_news_title) as TextView
-        val textViewPostCreationDate = rootView.findViewById<View>(R.id.detail_news_creation_date) as TextView
-        val textViewPostDescription = rootView.findViewById<View>(R.id.detail_news_description) as TextView
+        val textViewPostCreationDate =
+            rootView.findViewById<View>(R.id.detail_news_creation_date) as TextView
+        val textViewPostDescription =
+            rootView.findViewById<View>(R.id.detail_news_description) as TextView
         if (news != null) {
             if (!news!!.title.isNullOrEmpty()) {
                 textViewPostTitle.text = news!!.title
             }
-            val imageUrl = news!!.extractImageUrl()
+            val imageUrl = news!!.urlToImage
             if (!imageUrl.isNullOrEmpty()) {
                 Glide.with(this).load(imageUrl)
-                    .apply(RequestOptions().placeholder(R.drawable.ic_launcher_background)).into(imageViewPost)
+                    .apply(RequestOptions().placeholder(R.drawable.ic_launcher_background))
+                    .into(imageViewPost)
             }
 
             if (!news!!.publishedAt.isNullOrEmpty()) {
@@ -78,7 +84,7 @@ class NewsDetailFragment : BaseFragment(), NewsDetailContract.View {
 
     companion object {
         @JvmStatic
-        fun newInstance(news: News) =
+        fun newInstance(news: NewsUM) =
             NewsDetailFragment().apply {
                 arguments = Bundle().apply {
                     putParcelable(NEWS_PARAM, news)

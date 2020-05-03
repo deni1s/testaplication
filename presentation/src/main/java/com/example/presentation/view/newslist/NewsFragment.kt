@@ -1,30 +1,22 @@
 package com.example.presentation.view.newslist
 
 import android.os.Bundle
-import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.*
 import android.widget.TextView
-import com.example.data.realm.LinksDatabaseInterface
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.presentation.view.BaseFragment
 import com.example.presentation.view.newsdetails.NewsDetailFragment
 import com.example.presentation.view.settings.SettingsFragment
 import com.example.presentation.utils.recyclerview.EndlessScroll
 import com.example.presentation.R
-import com.example.data.realm.LinksDatabaseRepository
-import com.example.data.realm.NewsDatabaseInterface
-import com.example.data.realm.NewsDatabaseRepository
-import com.example.model.News
+import com.example.presentation.entity.NewsUM
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
-import kotlin.coroutines.coroutineContext
-
 
 class NewsFragment : BaseFragment(), NewsListContract.View, NewsClickCallback {
-
     private var recyclerView: RecyclerView? = null
     private var textViewEmpty: TextView? = null
     private var newsAdapter: NewsRecyclerViewAdapter? = null
@@ -33,16 +25,16 @@ class NewsFragment : BaseFragment(), NewsListContract.View, NewsClickCallback {
     var shouldRefreshNews: Boolean = false
     lateinit var endlessScrollListener: EndlessScroll
 
-    private val linksDatabaseRepository: LinksDatabaseInterface by inject()
-    override val presenter: NewsListContract.Presenter by inject { parametersOf(linksDatabaseRepository.getLinkList(), GlobalScope) }
-
+    override val presenter: NewsListContract.Presenter by inject {
+        parametersOf(GlobalScope)
+    }
 
     override fun showError(error: String) {
         hideProgressBar()
         showToast(error)
     }
 
-    override fun showNewsList(newsList: List<News>) {
+    override fun showNewsList(newsList: List<NewsUM>) {
         hideProgressBar()
         if (shouldRefreshNews) {
             newsAdapter!!.clear()
@@ -58,8 +50,11 @@ class NewsFragment : BaseFragment(), NewsListContract.View, NewsClickCallback {
         }
     }
 
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         super.onCreateView(inflater, container, savedInstanceState)
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.fragment_news_list, container, false)
@@ -78,7 +73,7 @@ class NewsFragment : BaseFragment(), NewsListContract.View, NewsClickCallback {
         swipeRefreshLayout = rootView.findViewById(R.id.swipe_refresh_layout)
         swipeRefreshLayout!!.setOnRefreshListener({ refreshData() })
 
-        recyclerView = rootView.findViewById<RecyclerView>(R.id.recycler_view_news)
+        recyclerView = rootView.findViewById(R.id.recycler_view_news)
         val linearLayoutManager = LinearLayoutManager(activity)
         recyclerView!!.layoutManager = linearLayoutManager
         if (context != null && isAdded) {
@@ -86,7 +81,7 @@ class NewsFragment : BaseFragment(), NewsListContract.View, NewsClickCallback {
         }
         endlessScrollListener = object : EndlessScroll(linearLayoutManager) {
             override fun onLoadMore(page: Int, totalItemsCount: Int) {
-                presenter.loadNewsList()
+                presenter.loanNextNewsPart()
             }
         }
         recyclerView!!.addOnScrollListener(endlessScrollListener)
@@ -129,12 +124,11 @@ class NewsFragment : BaseFragment(), NewsListContract.View, NewsClickCallback {
         }
     }
 
-    override fun onNewsClicked(news: News) {
+    override fun onNewsClicked(news: NewsUM) {
         openFragment(NewsDetailFragment.newInstance(news), true)
     }
 
     companion object {
-
         val FRAGMENT_TAG = "fragmentInstance"
         val fragmentInstance by lazy { NewsFragment() }
     }

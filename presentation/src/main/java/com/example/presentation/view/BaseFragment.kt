@@ -3,13 +3,13 @@ package com.example.presentation.view
 import android.app.Activity
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.example.presentation.R
 
 open class BaseFragment : Fragment() {
@@ -66,7 +66,7 @@ open class BaseFragment : Fragment() {
             if (activity != null && activity!!.currentFocus != null) {
                 val inputMethodManager =
                     activity!!.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
-                inputMethodManager.hideSoftInputFromWindow(activity!!.currentFocus.windowToken, 0)
+                inputMethodManager.hideSoftInputFromWindow(activity?.currentFocus?.windowToken, 0)
             }
         } catch (e: Exception) {
         }

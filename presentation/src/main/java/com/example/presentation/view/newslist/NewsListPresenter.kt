@@ -1,9 +1,10 @@
 package com.example.presentation.view.newslist
 
-import com.example.model.Link
+import com.example.entity.news.NewsModel
 import com.example.presentation.utils.mvp.BasePresenter
-import com.example.service.NewsRepositoryService
-import com.example.service.Result
+import com.example.entity.Result
+import com.example.presentation.entity.LinkUM
+import com.example.presentation.mappers.toUiModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -11,10 +12,8 @@ import kotlinx.coroutines.launch
 
 class NewsListPresenter(
     val coroutineScope: CoroutineScope,
-    val linksList: List<Link>,
-    val newsRepository: NewsRepositoryService
+    val newsModel: NewsModel
 ) : BasePresenter<NewsListContract.View>, NewsListContract.Presenter {
-
 
     override fun unSubscribe() {
         view = null
@@ -24,44 +23,48 @@ class NewsListPresenter(
     override var view: NewsListContract.View? = null
     private lateinit var job: Job
 
-
     override fun loadNewsList() {
         if (isLoading || isAllLoaded) {
             return
         }
-        loadData(currentLinkPosition + 1)
+        loadData()
     }
 
-    private var currentLinkPosition = -1
+    override fun loanNextNewsPart() {
+        isLoading = true
+        view!!.showProgressBar()
+        job = coroutineScope.launch(Dispatchers.Main) {
+            val newsResponse = newsModel.loadNextNewsListPart()
+            isLoading = false
+            if (newsResponse is Result.Success) {
+                view!!.showNewsList(newsResponse.data.toUiModel())
+            } else if (newsResponse is Result.Error) {
+                view?.hideProgressBar()
+                view?.showError(newsResponse.exception.localizedMessage)
+            }
+        }
+    }
+
     var isLoading: Boolean = false
     private var isAllLoaded: Boolean = false
 
     override fun reloadData() {
         isAllLoaded = false
-        loadData(0)
+        loadData()
     }
 
-    private fun loadData(position: Int) {
-        if (linksList.size > position) {
-            isLoading = true
-            view!!.showProgressBar()
-            job = coroutineScope.launch(Dispatchers.Main) {
-                val newsResponse = newsRepository.loadNewsList(linksList[position])
-                isLoading = false
-                if (newsResponse is Result.Success) {
-                    currentLinkPosition = position
-                    view!!.showNewsList(newsResponse.data)
-                } else if (newsResponse is Result.Error) {
-                    view?.hideProgressBar()
-                    view?.showError(newsResponse.exception.localizedMessage)
-                }
-            }
-        } else {
-            isAllLoaded = true
+    private fun loadData() {
+        isLoading = true
+        view!!.showProgressBar()
+        job = coroutineScope.launch(Dispatchers.Main) {
+            val newsResponse = newsModel.loadNewsList()
             isLoading = false
-            view!!.hideProgressBar()
-            view!!.showNewsList(arrayListOf())
+            if (newsResponse is Result.Success) {
+                view!!.showNewsList(newsResponse.data.toUiModel())
+            } else if (newsResponse is Result.Error) {
+                view?.hideProgressBar()
+                view?.showError(newsResponse.exception.localizedMessage)
+            }
         }
     }
-
 }

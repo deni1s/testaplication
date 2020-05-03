@@ -10,6 +10,7 @@
     <string name="placeholder_enter_news_link">Введите ссылку</string>
     <string name="title_news">Новости</string>
     <string name="alert_wrong_url">Некорректный адрес ссылки</string>
+    <string name="link_not_supported">Данный вид ссылок не поддерживается</string>
     <string name="placeholder_add_link_to_news">Добавьте ссылки на новости</string>
     <string name="alert_link_already_saved">Ссылка была добавлена ранее</string>
     <string name="empty_value">No data</string>
