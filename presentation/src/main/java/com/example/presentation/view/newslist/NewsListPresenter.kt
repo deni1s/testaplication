@@ -9,6 +9,7 @@ import com.example.presentation.routing.NewsNavigator
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class NewsListPresenter(
@@ -67,13 +68,14 @@ class NewsListPresenter(
         isLoading = true
         view!!.showProgressBar()
         job = coroutineScope.launch(Dispatchers.Main) {
-            val newsResponse = newsModel.loadNewsList()
-            isLoading = false
-            if (newsResponse is Result.Success) {
-                view!!.showNewsList(newsResponse.data.toUiModel())
-            } else if (newsResponse is Result.Error) {
-                view?.hideProgressBar()
-                view?.showError(newsResponse.exception.localizedMessage)
+            newsModel.loadNewsList().collect { newsResponse ->
+                isLoading = false
+                if (newsResponse is Result.Success) {
+                    view!!.showNewsList(newsResponse.data.toUiModel())
+                } else if (newsResponse is Result.Error) {
+                    view?.hideProgressBar()
+                    view?.showError(newsResponse.exception.localizedMessage)
+                }
             }
         }
     }

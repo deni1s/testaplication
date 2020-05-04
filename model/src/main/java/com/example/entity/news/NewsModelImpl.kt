@@ -6,6 +6,8 @@ import com.example.entity.News
 import com.example.entity.Result
 import com.example.repository.links.LinkRepository
 import com.example.repository.news.NewsRepository
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import kotlin.Exception
 
 internal class NewsModelImpl(
@@ -16,10 +18,12 @@ internal class NewsModelImpl(
     private var linkList: List<Link> = emptyList()
     private var lastLoadedLinkPosition: Int = 0
 
-    override suspend fun loadNewsList(): Result<List<News>> {
-        linkList = linkRepository.getLinkList()
-        lastLoadedLinkPosition = 0
-        return loadNewsList(lastLoadedLinkPosition)
+    override suspend fun loadNewsList(): Flow<Result<List<News>>> {
+        return linkRepository.getLinkList().map {
+            linkList = it
+            lastLoadedLinkPosition = 0
+            loadNewsList(lastLoadedLinkPosition)
+        }
     }
 
     override suspend fun loadNextNewsListPart(): Result<List<News>> {
@@ -44,10 +48,6 @@ internal class NewsModelImpl(
         if (!news.isNewsWatched) {
             newsRepository.addToWatchedNewsList(news)
         }
-    }
-
-    override suspend fun getLinkList(): List<Link> {
-        return linkRepository.getLinkList()
     }
 }
 

@@ -2,7 +2,6 @@ package com.example.presentation.view.settings
 
 import android.util.Patterns
 import com.example.entity.Result
-import com.example.entity.news.NewsModel
 import com.example.entity.settings.SettingsModel
 import com.example.presentation.routing.NewsNavigator
 import com.example.presentation.utils.mvp.BasePresenter
