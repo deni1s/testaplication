@@ -42,9 +42,9 @@ class NewsListFragment : BaseFragment(), NewsListContract.View, NewsClickCallbac
         }
         newsAdapter!!.addNewsList(newsList)
 
-        if (newsAdapter!!.itemCount == 0) {
-            swipeRefreshLayout!!.visibility = View.GONE
-            textViewEmpty!!.visibility == View.VISIBLE
+        if (newsAdapter?.itemCount == 0) {
+            swipeRefreshLayout?.visibility = View.GONE
+            textViewEmpty?.isVisible == true
         }
     }
 
@@ -112,7 +112,6 @@ class NewsListFragment : BaseFragment(), NewsListContract.View, NewsClickCallbac
             progress_bar?.bringToFront()
             progress_bar?.visibility = View.VISIBLE
             swipeRefreshLayout?.isRefreshing = true
-            textViewEmpty?.isVisible = false
         }
     }
 

@@ -15,7 +15,9 @@ class MainActivity : AppCompatActivity() {
         val imageView: ImageView = findViewById(R.id.news_image)
         imageView.animate().rotationBy(360f).setDuration(1000).withEndAction {
             val intent = Intent(applicationContext, NewsActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
+            finish()
         }
     }
 }
