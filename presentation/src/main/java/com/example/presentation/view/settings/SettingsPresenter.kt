@@ -2,14 +2,20 @@ package com.example.presentation.view.settings
 
 import android.util.Patterns
 import com.example.entity.Result
+import com.example.entity.news.NewsModel
 import com.example.entity.settings.SettingsModel
+import com.example.presentation.routing.NewsNavigator
 import com.example.presentation.utils.mvp.BasePresenter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class SettingsPresenter(val coroutineScope: CoroutineScope, val settingsModel: SettingsModel) :
+class SettingsPresenter(
+    val coroutineScope: CoroutineScope,
+    val settingsModel: SettingsModel,
+    val navigator: NewsNavigator
+) :
     BasePresenter<SettingsContract.View>,
     SettingsContract.Presenter {
 
@@ -31,6 +37,7 @@ class SettingsPresenter(val coroutineScope: CoroutineScope, val settingsModel: S
                     val result = settingsModel.saveLink(linkUrl = urlToNews)
                     if (result is Result.Success) {
                         view!!.linkSaved()
+                        navigator.backIntent()
                     } else if (result is Result.Error) {
                         view!!.linkNotSupported()
                     }
@@ -40,6 +47,10 @@ class SettingsPresenter(val coroutineScope: CoroutineScope, val settingsModel: S
                 view!!.linkNotValid()
             }
         }
+    }
+
+    override fun popBackStack() {
+        navigator.backIntent()
     }
 }
 

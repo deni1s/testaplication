@@ -16,5 +16,6 @@ interface SettingsContract {
 
     interface Presenter : BasePresenter<View> {
         fun saveUrl(urlToNews : String)
+        fun popBackStack()
     }
 }

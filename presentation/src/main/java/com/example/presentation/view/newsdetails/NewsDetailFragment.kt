@@ -13,20 +13,19 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.presentation.R
 import com.example.presentation.entity.NewsUM
+import com.example.presentation.routing.NEWS_PARAM
 import com.example.presentation.view.BaseFragment
+import kotlinx.android.synthetic.main.fragment_news_list.*
 import kotlinx.coroutines.GlobalScope
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 
-private const val NEWS_PARAM = "news"
 
 class NewsDetailFragment : BaseFragment(), NewsDetailContract.View {
 
     private lateinit var rootView: View
     private var news: NewsUM? = null
-    override val presenter: NewsDetailContract.Presenter by inject {
-        parametersOf(GlobalScope)
-    }
+    override val presenter: NewsDetailContract.Presenter by inject()
 
     override fun showNewsDetail(newsDetail: NewsUM) {
         val imageViewPost = rootView.findViewById<View>(R.id.detail_news_image) as ImageView
@@ -63,7 +62,6 @@ class NewsDetailFragment : BaseFragment(), NewsDetailContract.View {
 
     override fun showError(error: String) {
         showToast(error)
-        popBackStack()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -71,6 +69,7 @@ class NewsDetailFragment : BaseFragment(), NewsDetailContract.View {
         arguments?.let {
             news = it.getParcelable(NEWS_PARAM)
         }
+        toolbar.setNavigationOnClickListener { presenter.popBackStack() }
     }
 
     override fun onCreateView(
@@ -80,15 +79,5 @@ class NewsDetailFragment : BaseFragment(), NewsDetailContract.View {
         presenter.subscribe(this)
         presenter.setNewsDetails(news!!)
         return rootView
-    }
-
-    companion object {
-        @JvmStatic
-        fun newInstance(news: NewsUM) =
-            NewsDetailFragment().apply {
-                arguments = Bundle().apply {
-                    putParcelable(NEWS_PARAM, news)
-                }
-            }
     }
 }

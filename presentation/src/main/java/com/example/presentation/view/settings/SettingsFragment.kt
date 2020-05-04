@@ -8,42 +8,40 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import com.example.presentation.view.BaseFragment
-import com.example.entity.Link
-import com.example.presentation.view.newslist.NewsFragment
+import com.example.presentation.view.newslist.NewsListFragment
 import org.koin.android.ext.android.inject
 import com.example.presentation.R
-import kotlinx.coroutines.GlobalScope
-import org.koin.core.parameter.parametersOf
+import kotlinx.android.synthetic.main.fragment_settings.view.*
 
 class SettingsFragment : BaseFragment(), SettingsContract.View {
 
-    override val presenter: SettingsContract.Presenter by inject{ parametersOf(GlobalScope) }
+    override val presenter: SettingsContract.Presenter by inject()
 
     override fun showError(error: String) {
         showToast(error)
     }
 
     override fun linkWasAddedBefore() {
-        showToast(context!!.getString(R.string.alert_link_already_saved))
+        showToast(requireContext().getString(R.string.alert_link_already_saved))
     }
 
     override fun linkSaved() {
         showToast(getString(R.string.alert_success_link_adding))
-        val fragment =
-            activity!!.supportFragmentManager.findFragmentByTag(NewsFragment.FRAGMENT_TAG) as NewsFragment
-        fragment.refreshData()
-        popBackStack()
     }
 
     override fun linkNotValid() {
-        showToast(context!!.getString(R.string.alert_wrong_url))
+        showToast(requireContext().getString(R.string.alert_wrong_url))
     }
 
     override fun linkNotSupported() {
-        showToast(context!!.getString(R.string.link_not_supported))
+        showToast(requireContext().getString(R.string.link_not_supported))
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_settings, container, false)
     }
 
@@ -64,18 +62,12 @@ class SettingsFragment : BaseFragment(), SettingsContract.View {
                 presenter.saveUrl(url)
             }
         })
+        rootView.settings_toolbar.setNavigationOnClickListener { presenter.popBackStack() }
     }
 
     override fun onDestroy() {
         hideKeyboard()
         presenter.unSubscribe()
         super.onDestroy()
-    }
-
-    companion object {
-
-        fun newInstance(): SettingsFragment {
-            return SettingsFragment()
-        }
     }
 }

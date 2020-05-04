@@ -11,5 +11,6 @@ interface NewsDetailContract {
 
     interface Presenter : BasePresenter<View> {
         fun setNewsDetails(newsDetail: NewsUM)
+        fun popBackStack()
     }
 }

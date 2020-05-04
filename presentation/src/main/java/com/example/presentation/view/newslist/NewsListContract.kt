@@ -15,5 +15,7 @@ interface NewsListContract {
         fun loadNewsList()
         fun loanNextNewsPart()
         fun reloadData()
+        fun openSettings()
+        fun openNewsDetails(news: NewsUM)
     }
 }

@@ -3,8 +3,9 @@ package com.example.presentation.view.newslist
 import com.example.entity.news.NewsModel
 import com.example.presentation.utils.mvp.BasePresenter
 import com.example.entity.Result
-import com.example.presentation.entity.LinkUM
+import com.example.presentation.entity.NewsUM
 import com.example.presentation.mappers.toUiModel
+import com.example.presentation.routing.NewsNavigator
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -12,7 +13,8 @@ import kotlinx.coroutines.launch
 
 class NewsListPresenter(
     val coroutineScope: CoroutineScope,
-    val newsModel: NewsModel
+    val newsModel: NewsModel,
+    val navigator: NewsNavigator
 ) : BasePresenter<NewsListContract.View>, NewsListContract.Presenter {
 
     override fun unSubscribe() {
@@ -51,6 +53,14 @@ class NewsListPresenter(
     override fun reloadData() {
         isAllLoaded = false
         loadData()
+    }
+
+    override fun openSettings() {
+        navigator.settingsRequired()
+    }
+
+    override fun openNewsDetails(news: NewsUM) {
+        navigator.newsDetailsRequired(news)
     }
 
     private fun loadData() {
