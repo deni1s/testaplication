@@ -15,11 +15,8 @@ import com.example.presentation.R
 import com.example.presentation.entity.NewsUM
 import com.example.presentation.routing.NEWS_PARAM
 import com.example.presentation.view.BaseFragment
-import kotlinx.android.synthetic.main.fragment_news_list.*
-import kotlinx.coroutines.GlobalScope
+import kotlinx.android.synthetic.main.fragment_news_list.view.*
 import org.koin.android.ext.android.inject
-import org.koin.core.parameter.parametersOf
-
 
 class NewsDetailFragment : BaseFragment(), NewsDetailContract.View {
 
@@ -35,9 +32,7 @@ class NewsDetailFragment : BaseFragment(), NewsDetailContract.View {
         val textViewPostDescription =
             rootView.findViewById<View>(R.id.detail_news_description) as TextView
         if (news != null) {
-            if (!news!!.title.isNullOrEmpty()) {
-                textViewPostTitle.text = news!!.title
-            }
+            textViewPostTitle.text = news!!.title
             val imageUrl = news!!.urlToImage
             if (!imageUrl.isNullOrEmpty()) {
                 Glide.with(this).load(imageUrl)
@@ -45,12 +40,8 @@ class NewsDetailFragment : BaseFragment(), NewsDetailContract.View {
                     .into(imageViewPost)
             }
 
-            if (!news!!.publishedAt.isNullOrEmpty()) {
-                textViewPostCreationDate.text = news!!.publishedAt
-            }
-            if (!news!!.description.isNullOrEmpty()) {
-                textViewPostDescription.text = Html.fromHtml(news!!.description)
-            }
+            textViewPostCreationDate.text = news!!.publishedAt
+            textViewPostDescription.text = Html.fromHtml(news!!.description)
             textViewPostTitle.setOnClickListener {
                 if (!news!!.url.isNullOrEmpty()) {
                     val browserIntent = Intent(Intent.ACTION_VIEW, Uri.parse(news!!.url))
@@ -69,7 +60,6 @@ class NewsDetailFragment : BaseFragment(), NewsDetailContract.View {
         arguments?.let {
             news = it.getParcelable(NEWS_PARAM)
         }
-        toolbar.setNavigationOnClickListener { presenter.popBackStack() }
     }
 
     override fun onCreateView(
@@ -77,6 +67,7 @@ class NewsDetailFragment : BaseFragment(), NewsDetailContract.View {
     ): View? {
         rootView = inflater.inflate(R.layout.fragment_news_detail, container, false)
         presenter.subscribe(this)
+        rootView.toolbar.setNavigationOnClickListener { presenter.popBackStack() }
         presenter.setNewsDetails(news!!)
         return rootView
     }

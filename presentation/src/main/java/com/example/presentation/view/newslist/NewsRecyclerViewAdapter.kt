@@ -9,13 +9,10 @@ import com.bumptech.glide.request.RequestOptions
 import com.example.presentation.R
 import com.example.presentation.entity.NewsUM
 
-class NewsRecyclerViewAdapter(val context: Context, private val newsClickCallback: NewsClickCallback) : RecyclerView.Adapter<NewsViewHolder>() {
-
-    companion object {
-        val HALF_TRANSPARENT_VALUE = 0.5F
-        val NOT_TRANSPARENT_VALUE = 1F
-    }
-
+class NewsRecyclerViewAdapter(
+    val context: Context,
+    private val newsClickCallback: NewsClickCallback
+) : RecyclerView.Adapter<NewsViewHolder>() {
     var newsList = ArrayList<NewsUM>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
@@ -26,24 +23,13 @@ class NewsRecyclerViewAdapter(val context: Context, private val newsClickCallbac
 
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
         val item = newsList[position]
-        if (!item.title.isNullOrEmpty()) {
-            holder.textViewNewsTitle.text = item.title
-        } else {
-            holder.textViewNewsTitle.text = context.getString(R.string.empty_value)
-        }
-        if (!item.description.isNullOrEmpty()) {
-            holder.textViewContent.text = item.description
-        } else {
-            holder.textViewContent.text = context.getString(R.string.empty_value)
-        }
-        if (!item.publishedAt.isNullOrEmpty()) {
-            holder.textViewDate.text = item.publishedAt
-        } else {
-            holder.textViewDate.text = context.getString(R.string.empty_value)
-        }
+        holder.textViewNewsTitle.text = item.title
+        holder.textViewContent.text = item.description
+        holder.textViewDate.text = item.publishedAt
         if (!item.urlToImage.isNullOrEmpty()) {
             Glide.with(context).load(item.urlToImage)
-                .apply(RequestOptions().placeholder(R.drawable.ic_launcher_background)).into(holder.imageViewPreview)
+                .apply(RequestOptions().placeholder(R.drawable.ic_launcher_background))
+                .into(holder.imageViewPreview)
         } else {
             holder.imageViewPreview.setImageResource(R.drawable.ic_launcher_background)
         }
@@ -72,3 +58,6 @@ class NewsRecyclerViewAdapter(val context: Context, private val newsClickCallbac
         this.newsList.clear()
     }
 }
+
+private const val HALF_TRANSPARENT_VALUE = 0.5F
+private const val NOT_TRANSPARENT_VALUE = 1F

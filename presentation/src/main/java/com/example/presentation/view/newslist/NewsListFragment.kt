@@ -3,6 +3,7 @@ package com.example.presentation.view.newslist
 import android.os.Bundle
 import android.view.*
 import android.widget.TextView
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -102,15 +103,16 @@ class NewsListFragment : BaseFragment(), NewsListContract.View, NewsClickCallbac
 
     override fun hideProgressBar() {
         progress_bar?.visibility = View.GONE
-        swipeRefreshLayout!!.setRefreshing(false)
-        swipeRefreshLayout!!.visibility = View.VISIBLE
+        swipeRefreshLayout?.isRefreshing = false
+        swipeRefreshLayout?.visibility = View.VISIBLE
     }
 
     override fun showProgressBar() {
         if (newsAdapter!!.itemCount == 0) {
             progress_bar?.bringToFront()
             progress_bar?.visibility = View.VISIBLE
-            swipeRefreshLayout!!.setRefreshing(true)
+            swipeRefreshLayout?.isRefreshing = true
+            textViewEmpty?.isVisible = false
         }
     }
 
