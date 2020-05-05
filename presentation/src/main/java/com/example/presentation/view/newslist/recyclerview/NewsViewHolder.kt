@@ -1,4 +1,4 @@
-package com.example.presentation.view.newslist
+package com.example.presentation.view.newslist.recyclerview
 
 import android.view.View
 import android.widget.ImageView

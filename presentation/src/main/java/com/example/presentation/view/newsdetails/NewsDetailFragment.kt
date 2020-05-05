@@ -9,16 +9,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.presentation.R
 import com.example.presentation.entity.NewsUM
 import com.example.presentation.routing.NEWS_PARAM
-import com.example.presentation.view.BaseFragment
+import com.example.presentation.utils.fragment.showToast
 import kotlinx.android.synthetic.main.fragment_news_list.view.*
 import org.koin.android.ext.android.inject
 
-class NewsDetailFragment : BaseFragment(), NewsDetailContract.View {
+class NewsDetailFragment : Fragment(), NewsDetailContract.View {
 
     private lateinit var rootView: View
     private var news: NewsUM? = null

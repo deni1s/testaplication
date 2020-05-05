@@ -1,4 +1,4 @@
-package com.example.presentation.view.newslist
+package com.example.presentation.view.newslist.recyclerview
 
 import com.example.presentation.entity.NewsUM
 

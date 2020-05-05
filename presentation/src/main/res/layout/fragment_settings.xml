@@ -5,6 +5,7 @@
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
+
     <androidx.appcompat.widget.Toolbar
             android:id="@+id/settings_toolbar"
             android:layout_width="match_parent"
@@ -56,5 +57,26 @@
             android:text="@string/button_add"
             android:textAllCaps="false"
             android:textColor="@android:color/white" />
+
+    <TextView
+            android:id="@+id/settings_add_link_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@string/try_this_links"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="18sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/settings_template_links_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp" />
 
 </LinearLayout>

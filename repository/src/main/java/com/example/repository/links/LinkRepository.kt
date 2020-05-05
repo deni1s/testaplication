@@ -6,4 +6,5 @@ import kotlinx.coroutines.flow.Flow
 interface LinkRepository {
     suspend fun getLinkList(): Flow<List<Link>>
     suspend fun saveLink(link: Link)
+    suspend fun linkAlreadySaved(linkUrl: String): Boolean
 }

@@ -4,19 +4,22 @@ import android.os.Bundle
 import android.view.*
 import android.widget.TextView
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.example.presentation.view.BaseFragment
 import com.example.presentation.utils.recyclerview.EndlessScroll
 import com.example.presentation.R
 import com.example.presentation.entity.NewsUM
-import kotlinx.android.synthetic.main.fragment_news_list.*
+import com.example.presentation.utils.fragment.showToast
+import com.example.presentation.view.newslist.recyclerview.NewsClickCallback
+import com.example.presentation.view.newslist.recyclerview.NewsRecyclerViewAdapter
 import kotlinx.android.synthetic.main.fragment_news_list.view.*
 import kotlinx.android.synthetic.main.progress_bar.*
 import org.koin.android.ext.android.inject
 
-class NewsListFragment : BaseFragment(), NewsListContract.View, NewsClickCallback {
+class NewsListFragment : Fragment(), NewsListContract.View,
+    NewsClickCallback {
     private var recyclerView: RecyclerView? = null
     private var textViewEmpty: TextView? = null
     private var newsAdapter: NewsRecyclerViewAdapter? = null
@@ -73,7 +76,11 @@ class NewsListFragment : BaseFragment(), NewsListContract.View, NewsClickCallbac
         val linearLayoutManager = LinearLayoutManager(activity)
         recyclerView!!.layoutManager = linearLayoutManager
         if (context != null && isAdded) {
-            newsAdapter = NewsRecyclerViewAdapter(requireContext(), this)
+            newsAdapter =
+                NewsRecyclerViewAdapter(
+                    requireContext(),
+                    this
+                )
         }
         endlessScrollListener = object : EndlessScroll(linearLayoutManager) {
             override fun onLoadMore(page: Int, totalItemsCount: Int) {
@@ -96,7 +103,7 @@ class NewsListFragment : BaseFragment(), NewsListContract.View, NewsClickCallbac
         presenter.unSubscribe()
     }
 
-    fun refreshData() {
+    private fun refreshData() {
         shouldRefreshNews = true
         presenter.reloadData()
     }

@@ -11,6 +11,9 @@ internal class SettingsModelImpl(
     val newsRepository: NewsRepository
 ) : SettingsModel {
     override suspend fun saveLink(linkUrl: String): Result<Unit> {
+        if (linkAlreadySaved(linkUrl)) {
+            return Result.Error(IllegalArgumentException("link already saved"))
+        }
         val linkType = getLinkType(linkUrl)
         return if (linkType == LinkType.Invalid) {
             Result.Error(IllegalArgumentException("link type is invalid"))
@@ -20,6 +23,21 @@ internal class SettingsModelImpl(
         }
     }
 
+    override suspend fun saveLink(link: Link): Result<Unit> {
+        linkRepository.saveLink(link)
+        return Result.Success(Unit)
+    }
+
+    override suspend fun getLinkList(): Result<List<Link>> {
+        val linkList = mutableListOf<Link>()
+        fakeLinkList.map {
+            if (!linkAlreadySaved(it.link)) {
+                linkList.add(it)
+            }
+        }
+        return Result.Success(linkList)
+    }
+
     private suspend fun getLinkType(linkUrl: String): LinkType {
         return when {
             newsRepository.loanJsonNews(linkUrl) is Result.Success -> LinkType.Json
@@ -27,4 +45,19 @@ internal class SettingsModelImpl(
             else -> LinkType.Invalid
         }
     }
+
+    private suspend fun linkAlreadySaved(linkUrl: String): Boolean {
+        return linkRepository.linkAlreadySaved(linkUrl)
+    }
 }
+
+private val fakeLinkList = listOf(
+    Link(
+        link = "http://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=2778ba9d0314458596009ce5650f906f",
+        type = LinkType.Json
+    ),
+    Link(
+        link = "https://www.buzzfeed.com/world.xml",
+        type = LinkType.Xml
+    )
+)

@@ -14,4 +14,7 @@ interface LinkDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addLinkToDataBase(link: LinkSM)
+
+    @Query("SELECT * FROM links_table WHERE link = :linkUrl")
+    suspend fun getLinkByUrl(linkUrl: String): LinkSM?
 }

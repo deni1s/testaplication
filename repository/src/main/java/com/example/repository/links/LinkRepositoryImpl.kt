@@ -15,4 +15,8 @@ internal class LinkRepositoryImpl(val linkDao: LinkDao) : LinkRepository {
     override suspend fun saveLink(link: Link) {
         linkDao.addLinkToDataBase(link.toStorageModel())
     }
+
+    override suspend fun linkAlreadySaved(linkUrl: String): Boolean {
+        return linkDao.getLinkByUrl(linkUrl) != null
+    }
 }

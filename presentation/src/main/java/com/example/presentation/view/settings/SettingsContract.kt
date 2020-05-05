@@ -9,6 +9,7 @@ import com.example.presentation.entity.LinkUM
 interface SettingsContract {
     interface View : BaseView<Presenter> {
         fun linkSaved()
+        fun showLinkList(link: List<LinkUM>)
         fun linkNotValid()
         fun linkNotSupported()
         fun linkWasAddedBefore()
@@ -16,6 +17,7 @@ interface SettingsContract {
 
     interface Presenter : BasePresenter<View> {
         fun saveUrl(urlToNews : String)
+        fun saveLink(link: LinkUM)
         fun popBackStack()
     }
 }

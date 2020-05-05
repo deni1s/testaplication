@@ -4,7 +4,7 @@ import com.example.entity.Link
 import com.example.entity.LinkType
 import com.example.storage.entity.LinkSM
 
-private fun LinkSM.toDomainModel(): Link {
+fun LinkSM.toDomainModel(): Link {
     return Link(
         link = this.link,
         type = type.toDomainModel()

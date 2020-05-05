@@ -45,7 +45,7 @@ fun NewsJsonResponse.toDomainModel(storedList: List<NewsSM>): List<News> {
         with(it) {
             News(
                 title = title,
-                description = description ?: content,
+                description = description ?: content ?: "",
                 isNewsWatched = storedList.containsTitle(title),
                 publishedAt = LocalDateTime.parse(publishedAt, LOCAL_DATE_SERVER_JSON_FORMAT),
                 urlToImage = urlToImage,

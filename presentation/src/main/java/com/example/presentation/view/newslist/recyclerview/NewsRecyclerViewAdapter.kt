@@ -1,4 +1,4 @@
-package com.example.presentation.view.newslist
+package com.example.presentation.view.newslist.recyclerview
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -18,7 +18,9 @@ class NewsRecyclerViewAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.news_view_holder, parent, false)
-        return NewsViewHolder(view)
+        return NewsViewHolder(
+            view
+        )
     }
 
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
@@ -35,13 +37,16 @@ class NewsRecyclerViewAdapter(
         }
 
         if (item.isNewsWatched) {
-            holder.itemView.alpha = HALF_TRANSPARENT_VALUE
+            holder.itemView.alpha =
+                HALF_TRANSPARENT_VALUE
         } else {
-            holder.itemView.alpha = NOT_TRANSPARENT_VALUE
+            holder.itemView.alpha =
+                NOT_TRANSPARENT_VALUE
         }
 
         holder.itemView.setOnClickListener {
-            holder.itemView.alpha = HALF_TRANSPARENT_VALUE
+            holder.itemView.alpha =
+                HALF_TRANSPARENT_VALUE
             newsClickCallback.onNewsClicked(item)
         }
     }

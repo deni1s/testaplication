@@ -5,7 +5,7 @@ data class NewsJsonNM(
     var author: String?,
     var title: String,
     var publishedAt: String,
-    var content: String,
+    var content: String?,
     var url: String?,
     var urlToImage: String?,
     var source: SourceJsonNM
