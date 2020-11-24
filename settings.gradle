@@ -1,7 +1,7 @@
 include ':app',
         ':domain-entity',
         ':network',
-        ':model',
+        ':domain',
         ':storage',
         ':presentation',
         ':repository',

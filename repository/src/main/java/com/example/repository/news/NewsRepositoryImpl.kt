@@ -11,11 +11,12 @@ import com.example.repository.mappers.toStorageModel
 import com.example.storage.news.NewsDao
 import com.example.entity.Result
 import java.lang.IllegalArgumentException
+import javax.inject.Inject
 
-internal class NewsRepositoryImpl(
-    val jsonNewsApi: NewsJsonApi,
-    val rssNewsApi: NewsXmlApi,
-    val newsDao: NewsDao
+class NewsRepositoryImpl @Inject constructor(
+    private val jsonNewsApi: NewsJsonApi,
+    private val rssNewsApi: NewsXmlApi,
+    private val newsDao: NewsDao
 ) : NewsRepository {
 
     override suspend fun loadNewsList(link: Link): Result<List<News>> {

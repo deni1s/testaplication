@@ -8,49 +8,32 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import org.koin.android.ext.android.inject
 import com.example.presentation.R
 import com.example.presentation.entity.LinkUM
+import com.example.presentation.utils.fragment.BaseFragment
 import com.example.presentation.utils.fragment.hideKeyboard
 import com.example.presentation.utils.fragment.showToast
+import com.example.presentation.view.newslist.NewsListViewModel
 import com.example.presentation.view.settings.recyclerview.LinkClickCallback
 import com.example.presentation.view.settings.recyclerview.LinksRecyclerViewAdapter
 import kotlinx.android.synthetic.main.fragment_settings.view.*
+import javax.inject.Inject
 
-class SettingsFragment : Fragment(), SettingsContract.View, LinkClickCallback {
+class SettingsFragment : BaseFragment(), LinkClickCallback {
 
-    override val presenter: SettingsContract.Presenter by inject()
+    private lateinit var presenter: SettingsViewModel
     private var linksAdapter: LinksRecyclerViewAdapter? = null
     private var addLinkLabel: TextView? = null
     private var linkTemplateRecyclerView: RecyclerView? = null
 
-    override fun showError(error: String) {
-        showToast(error)
-    }
-
-    override fun linkWasAddedBefore() {
-        showToast(requireContext().getString(R.string.alert_link_already_saved))
-    }
-
-    override fun linkSaved() {
-        showToast(getString(R.string.alert_success_link_adding))
-    }
-
-    override fun showLinkList(link: List<LinkUM>) {
+    private fun showLinkList(link: List<LinkUM>) {
         linksAdapter?.addLinkList(link)
         addLinkLabel?.isVisible = link.isNotEmpty()
         linkTemplateRecyclerView?.isVisible = link.isNotEmpty()
-    }
-
-    override fun linkNotValid() {
-        showToast(requireContext().getString(R.string.alert_wrong_url))
-    }
-
-    override fun linkNotSupported() {
-        showToast(requireContext().getString(R.string.link_not_supported))
     }
 
     override fun onCreateView(
@@ -58,12 +41,19 @@ class SettingsFragment : Fragment(), SettingsContract.View, LinkClickCallback {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        presenter = ViewModelProviders.of(this, modelFactory)[SettingsViewModel::class.java]
+        presenter.fetchLinkList()
         return inflater.inflate(R.layout.fragment_settings, container, false)
+    }
+
+    override fun bindSubscriptions() {
+        presenter.setShowLinkListListener(this::showLinkList)
+        presenter.setShowToastListener(this::showToast)
+        presenter.setPopBackStackListener(this::popBackStack)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        presenter.subscribe(this)
         prepareViews(view)
     }
 
@@ -74,9 +64,13 @@ class SettingsFragment : Fragment(), SettingsContract.View, LinkClickCallback {
             val url = editTextLink.text.toString().trim()
             presenter.saveUrl(url)
         }
-        rootView.settings_toolbar.setNavigationOnClickListener { presenter.popBackStack() }
+        rootView.settings_toolbar.setNavigationOnClickListener { popBackStack() }
         addLinkLabel = rootView.findViewById(R.id.settings_add_link_label)
         prepareRecyclerView(rootView.settings_template_links_view)
+    }
+
+    private fun popBackStack() {
+        findNavController().popBackStack()
     }
 
     private fun prepareRecyclerView(recyclerView: RecyclerView) {
@@ -89,7 +83,6 @@ class SettingsFragment : Fragment(), SettingsContract.View, LinkClickCallback {
 
     override fun onDestroy() {
         hideKeyboard()
-        presenter.unSubscribe()
         super.onDestroy()
     }
 

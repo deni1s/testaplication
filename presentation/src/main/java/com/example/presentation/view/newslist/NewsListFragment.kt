@@ -5,38 +5,37 @@ import android.view.*
 import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.example.presentation.utils.recyclerview.EndlessScroll
 import com.example.presentation.R
 import com.example.presentation.entity.NewsUM
+import com.example.presentation.utils.fragment.BaseFragment
 import com.example.presentation.utils.fragment.showToast
 import com.example.presentation.view.newslist.recyclerview.NewsClickCallback
 import com.example.presentation.view.newslist.recyclerview.NewsRecyclerViewAdapter
 import kotlinx.android.synthetic.main.fragment_news_list.view.*
 import kotlinx.android.synthetic.main.progress_bar.*
-import org.koin.android.ext.android.inject
 
-class NewsListFragment : Fragment(), NewsListContract.View,
-    NewsClickCallback {
+class NewsListFragment : BaseFragment(), NewsClickCallback {
     private var recyclerView: RecyclerView? = null
     private var textViewEmpty: TextView? = null
     private var newsAdapter: NewsRecyclerViewAdapter? = null
     private var swipeRefreshLayout: SwipeRefreshLayout? = null
     private var rootView: View? = null
-    var shouldRefreshNews: Boolean = false
-    lateinit var endlessScrollListener: EndlessScroll
+    private var shouldRefreshNews: Boolean = false
+    private lateinit var endlessScrollListener: EndlessScroll
+    private lateinit var presenter: NewsListViewModel
 
-    override val presenter: NewsListContract.Presenter by inject()
-
-    override fun showError(error: String) {
-        hideProgressBar()
+    private fun showError(error: String) {
         showToast(error)
     }
 
-    override fun showNewsList(newsList: List<NewsUM>) {
-        hideProgressBar()
+    private fun showNewsList(newsList: List<NewsUM>) {
         if (shouldRefreshNews) {
             newsAdapter!!.clear()
             endlessScrollListener.resetState()
@@ -51,6 +50,12 @@ class NewsListFragment : Fragment(), NewsListContract.View,
         }
     }
 
+    override fun bindSubscriptions() {
+        presenter.setShowErrorListener(this::showError)
+        presenter.setShowNewsListListener(this::showNewsList)
+        presenter.setShowProgressBarListener(this::showProgressBar)
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -60,8 +65,7 @@ class NewsListFragment : Fragment(), NewsListContract.View,
         if (rootView == null) {
             rootView = inflater.inflate(R.layout.fragment_news_list, container, false)
             prepareViews(rootView!!)
-            showProgressBar()
-            presenter.subscribe(this)
+            presenter = ViewModelProviders.of(this, modelFactory)[NewsListViewModel::class.java]
             presenter.loadNewsList()
         }
 
@@ -70,17 +74,13 @@ class NewsListFragment : Fragment(), NewsListContract.View,
 
     private fun prepareViews(rootView: View) {
         swipeRefreshLayout = rootView.findViewById(R.id.swipe_refresh_layout)
-        swipeRefreshLayout!!.setOnRefreshListener({ refreshData() })
+        swipeRefreshLayout?.setOnRefreshListener { refreshData() }
 
         recyclerView = rootView.findViewById(R.id.recycler_view_news)
         val linearLayoutManager = LinearLayoutManager(activity)
         recyclerView!!.layoutManager = linearLayoutManager
-        if (context != null && isAdded) {
-            newsAdapter =
-                NewsRecyclerViewAdapter(
-                    requireContext(),
-                    this
-                )
+        if (isAdded) {
+            newsAdapter = NewsRecyclerViewAdapter(requireContext(), this)
         }
         endlessScrollListener = object : EndlessScroll(linearLayoutManager) {
             override fun onLoadMore(page: Int, totalItemsCount: Int) {
@@ -92,15 +92,11 @@ class NewsListFragment : Fragment(), NewsListContract.View,
         textViewEmpty = rootView.findViewById(R.id.text_view_news_empty)
         rootView.toolbar.setOnMenuItemClickListener {
             if (it.itemId == R.id.open_settings) {
-                presenter.openSettings()
+                val action = NewsListFragmentDirections.actionNewsFragmentToSettingsFragment3()
+                findNavController().navigate(action)
             }
             return@setOnMenuItemClickListener true
         }
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        presenter.unSubscribe()
     }
 
     private fun refreshData() {
@@ -108,21 +104,13 @@ class NewsListFragment : Fragment(), NewsListContract.View,
         presenter.reloadData()
     }
 
-    override fun hideProgressBar() {
-        progress_bar?.visibility = View.GONE
-        swipeRefreshLayout?.isRefreshing = false
-        swipeRefreshLayout?.visibility = View.VISIBLE
-    }
-
-    override fun showProgressBar() {
-        if (newsAdapter!!.itemCount == 0) {
-            progress_bar?.bringToFront()
-            progress_bar?.visibility = View.VISIBLE
-            swipeRefreshLayout?.isRefreshing = true
-        }
+    private fun showProgressBar(show: Boolean) {
+        progress_bar?.isVisible = show
+        swipeRefreshLayout?.isRefreshing = true
     }
 
     override fun onNewsClicked(news: NewsUM) {
-        presenter.openNewsDetails(news)
+        val action = NewsListFragmentDirections.actionNewsFragmentToNewsDetailFragment(news)
+        findNavController().navigate(action)
     }
 }

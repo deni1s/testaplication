@@ -6,8 +6,9 @@ import com.example.repository.mappers.toStorageModel
 import com.example.storage.links.LinkDao
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
-internal class LinkRepositoryImpl(val linkDao: LinkDao) : LinkRepository {
+class LinkRepositoryImpl @Inject constructor(private val linkDao: LinkDao) : LinkRepository {
     override suspend fun getLinkList(): Flow<List<Link>> {
         return linkDao.getLinkList().map { it.toDomainModel() }
     }

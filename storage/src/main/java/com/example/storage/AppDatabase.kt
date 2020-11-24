@@ -20,7 +20,7 @@ internal const val DATABASE_NAME = "newsapp_database"
     version = DATABASE_VERSION
 )
 @TypeConverters(DatabaseTypeConverters::class)
-internal abstract class AppDatabase : RoomDatabase() {
+abstract class AppDatabase : RoomDatabase() {
     abstract fun newsPersistence(): NewsDao
     abstract fun linkPersistence(): LinkDao
 }

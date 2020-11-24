@@ -2,8 +2,7 @@ package com.example.presentation
 
 import com.example.entity.Link
 import com.example.entity.News
-import com.example.presentation.view.newslist.NewsListContract
-import com.example.presentation.view.newslist.NewsListPresenter
+import com.example.presentation.view.newslist.NewsListViewModel
 import com.example.entity.news.NewsModelImpl
 import com.example.entity.Result
 import kotlinx.coroutines.Job
@@ -25,7 +24,7 @@ class NewsListPresenterTest {
     @Mock
     private lateinit var fetchFeed: NewsModelImpl
 
-    private lateinit var presenterImpl: NewsListPresenter
+    private lateinit var viewModelImpl: NewsListViewModel
 
     private val testScopeProvider = TestScopeProvider()
 
@@ -44,9 +43,9 @@ class NewsListPresenterTest {
 
         link = getLink()
         val feed = getNewsList()
-        presenterImpl = NewsListPresenter(testScopeProvider, arrayListOf(link, link), fetchFeed)
-        presenterImpl.subscribe(feedView)
-        presenterImpl.loadNewsList()
+        viewModelImpl = NewsListViewModel(testScopeProvider, arrayListOf(link, link), fetchFeed)
+        viewModelImpl.subscribe(feedView)
+        viewModelImpl.loadNewsList()
         Mockito.doReturn(feed).`when`(fetchFeed).loadNewsList(link)
         val inOrder = Mockito.inOrder(feedView)
         inOrder.verify(feedView).showProgressBar()
@@ -88,9 +87,9 @@ class NewsListPresenterTest {
 
         link = getLink()
         val feed = getNewsError()
-        presenterImpl = NewsListPresenter(testScopeProvider, arrayListOf(link, link), fetchFeed)
-        presenterImpl.subscribe(feedView)
-        presenterImpl.loadNewsList()
+        viewModelImpl = NewsListViewModel(testScopeProvider, arrayListOf(link, link), fetchFeed)
+        viewModelImpl.subscribe(feedView)
+        viewModelImpl.loadNewsList()
        // Mockito.doReturn(feed).`when`(fetchFeed).loadNewsList(link)
         `when`(fetchFeed.loadNewsList(link)).thenReturn(feed)
         val inOrder = Mockito.inOrder(feedView)

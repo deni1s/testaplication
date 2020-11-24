@@ -1,8 +1,9 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion versions.compileSdk
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -11,10 +12,10 @@ android {
 
     defaultConfig {
         applicationId "com.example.presentation"
-        minSdkVersion 16
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        versionCode versions.versionCode
+        versionName versions.versionNam
         multiDexEnabled true
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -25,14 +26,21 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    implementation 'org.koin:koin-android:1.0.2'
+    implementation "androidx.appcompat:appcompat:$versions.appCompat"
+    implementation "com.google.dagger:dagger:${versions.dagger}"
+    kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
+    implementation "com.squareup.retrofit2:retrofit:${versions.retrofit}"
+
     implementation project(":presentation")
     implementation project(":network")
-    implementation project(":model")
+    implementation project(':domain')
     implementation project(":storage")
+    implementation project(":repository")
 }
