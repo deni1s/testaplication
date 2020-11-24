@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.example.presentation.view.newsdetails.customview.CollapsibleToolbar xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/motionLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="false"
+        android:minHeight="50dp"
+        app:layoutDescription="@xml/news_details_scene"
+        app:layout_scrollFlags="scroll|enterAlways|snap|exitUntilCollapsed">
+
+    <ImageView
+            android:id="@+id/detail_news_image"
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:background="@color/colorAccent"
+            android:scaleType="centerCrop"
+            tools:src="@drawable/button_background" />
+
+    <TextView
+            android:id="@+id/detail_news_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center|start"
+            android:lineSpacingExtra="4dp"
+            android:textColor="@color/colorPrimary"
+            android:textSize="24sp"
+            tools:text="Заголовок" />
+
+</com.example.presentation.view.newsdetails.customview.CollapsibleToolbar>

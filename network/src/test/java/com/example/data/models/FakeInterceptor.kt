@@ -5,7 +5,7 @@ import java.io.IOException
 import com.example.data.BuildConfig
 
 
-class FakeInterceptor(stringFromFile: String) : Interceptor {
+class akeInterceptor(stringFromFile: String) : Interceptor {
 
     private val TAG = FakeInterceptor::class.java.simpleName
 

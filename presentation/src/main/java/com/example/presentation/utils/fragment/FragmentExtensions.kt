@@ -20,7 +20,7 @@ fun Fragment.hideKeyboard() {
 
 fun Fragment.showToast(text: String) {
     val activity = activity
-    if (activity != null && isAdded()) {
+    if (activity != null && isAdded) {
         Toast.makeText(activity, text, Toast.LENGTH_SHORT).show()
     }
 }

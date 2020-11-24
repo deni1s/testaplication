@@ -3,21 +3,20 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion versions.compileSdk
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
 }
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation "com.jakewharton.threetenabp:threetenabp:$versions.threetenabp"
 
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    implementation "com.squareup.retrofit2:converter-simplexml:2.8.1"
-    implementation "com.jakewharton.threetenabp:threetenabp:1.2.1"
-
-    implementation 'com.squareup.retrofit2:retrofit:2.8.1'
-    implementation 'org.jsoup:jsoup:1.10.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
